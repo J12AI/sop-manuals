@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J12.ai — Master Brand Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+/* ─────────────────────────────────────────────
+   J12 BRAND CSS CUSTOM PROPERTIES
+   Copy this :root block into every project
+   ───────────────────────────────────────────── */
+:root {
+  /* Colors */
+  --j12-black:     #141414;
+  --j12-dark:      #111111;
+  --j12-charcoal:  #1E1E1E;
+  --j12-green:     #6CCF6D;
+  --j12-gold:      #E0B86D;
+  --j12-blue:      #5B8DEF;
+  --j12-white:     #F5F4F0;
+  --j12-muted:     rgba(245, 244, 240, 0.58);
+  --j12-dim:       rgba(245, 244, 240, 0.09);
+
+  /* Fonts */
+  --font-display:  'Cormorant Garamond', serif;
+  --font-body:     'Inter', sans-serif;
+  --font-mono:     'Space Mono', monospace;
+}
+
+/* ─────────────────────────────────────────────
+   BASE
+   ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--j12-black);
+  color: var(--j12-white);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page { max-width: 960px; margin: 0 auto; padding: 60px 40px 120px; }
+
+/* ─────────────────────────────────────────────
+   SECTION STRUCTURE
+   ───────────────────────────────────────────── */
+.section { margin-bottom: 80px; }
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--j12-green);
+  margin-bottom: 6px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--j12-white);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.section-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--j12-white);
+  opacity: 0.5;
+  margin-bottom: 36px;
+  max-width: 600px;
+  line-height: 1.65;
+}
+
+.section-rule {
+  height: 1px;
+  background: var(--j12-dim);
+  margin-bottom: 36px;
+}
+
+/* ─────────────────────────────────────────────
+   COVER
+   ───────────────────────────────────────────── */
+.cover {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 60px 0 80px;
+  border-bottom: 1px solid var(--j12-dim);
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 65%;
+  height: 3px;
+  background: var(--j12-green);
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 65%;
+  width: 35%;
+  height: 3px;
+  background: var(--j12-gold);
+}
+
+.cover-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--j12-green);
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.cover-brand {
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 300;
+  color: var(--j12-white);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+.cover-tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--j12-gold);
+  margin-bottom: 40px;
+}
+
+.cover-meta {
+  display: flex;
+  gap: 48px;
+  margin-top: 20px;
+}
+
+.cover-meta-item label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--j12-white);
+  opacity: 0.28;
+  margin-bottom: 4px;
+}
+
+.cover-meta-item span {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--j12-white);
+  opacity: 0.75;
+}
+
+/* ─────────────────────────────────────────────
+   HOW TO USE
+   ───────────────────────────────────────────── */
+.how-to-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.how-card {
+  background: var(--j12-charcoal);
+  border-radius: 10px;
+  padding: 20px 22px;
+  border-left: 2px solid var(--j12-green);
+}
+
+.how-card.gold { border-left-color: var(--j12-gold); }
+
+.how-card-num {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--j12-green);
+  letter-spacing: 0.14em;
+  margin-bottom: 6px;
+}
+
+.how-card.gold .how-card-num { color: var(--j12-gold); }
+
+.how-card-title {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--j12-white);
+  margin-bottom: 4px;
+}
+
+.how-card-desc {
+  font-size: 12px;
+  color: var(--j12-white);
+  opacity: 0.48;
+  line-height: 1.55;
+}
+
+/* ─────────────────────────────────────────────
+   LOGO ASSETS — ICON GRID (3-col)
+   ───────────────────────────────────────────── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.logo-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 0.5px solid rgba(245,244,240,0.08);
+}
+
+.logo-stage {
+  background: var(--j12-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  min-height: 200px;
+}
+
+.logo-stage.dark { background: var(--j12-dark); }
+
+.logo-stage img {
+  max-width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-meta {
+  background: var(--j12-charcoal);
+  padding: 14px 16px;
+  border-top: 0.5px solid rgba(245,244,240,0.06);
+}
+
+.logo-meta-num {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--j12-green);
+  margin-bottom: 3px;
+}
+
+.logo-meta-num.gold { color: var(--j12-gold); }
+
+.logo-meta-name {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--j12-white);
+  margin-bottom: 3px;
+}
+
+.logo-meta-use {
+  font-size: 11px;
+  color: var(--j12-white);
+  opacity: 0.4;
+  line-height: 1.4;
+}
+
+.logo-meta-file {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--j12-white);
+  opacity: 0.22;
+  margin-top: 6px;
+}
+
+/* ─────────────────────────────────────────────
+   WORDMARK LOGO GRID — 2-col
+   ───────────────────────────────────────────── */
+.wordmark-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.wordmark-stage {
+  background: var(--j12-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 28px;
+  min-height: 180px;
+}
+
+.wordmark-stage.dark { background: var(--j12-dark); }
+
+.wordmark-stage img {
+  max-width: 100%;
+  max-height: 130px;
+  object-fit: contain;
+}
+
+/* ─────────────────────────────────────────────
+   EDITORIAL LOGO GRID — full-width horizontal
+   ───────────────────────────────────────────── */
+.editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.editorial-stage {
+  background: var(--j12-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 24px;
+  min-height: 140px;
+}
+
+.editorial-stage img {
+  max-width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+/* Full-width display stage */
+.display-stage {
+  background: var(--j12-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  min-height: 220px;
+  width: 100%;
+}
+
+.display-stage img {
+  max-width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+}
+
+/* ─────────────────────────────────────────────
+   COLOR SYSTEM
+   ───────────────────────────────────────────── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.color-chip { border-radius: 8px; overflow: hidden; border: 0.5px solid rgba(245,244,240,0.08); }
+
+.color-swatch { height: 64px; }
+
+.color-info {
+  background: var(--j12-charcoal);
+  padding: 10px 10px;
+}
+
+.color-name {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--j12-white);
+  margin-bottom: 2px;
+}
+
+.color-hex {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  color: var(--j12-white);
+  opacity: 0.45;
+}
+
+.color-role {
+  font-size: 9px;
+  color: var(--j12-white);
+  opacity: 0.28;
+  margin-top: 3px;
+  line-height: 1.3;
+}
+
+.color-rules { display: flex; flex-direction: column; gap: 10px; }
+
+.color-rule {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  background: var(--j12-charcoal);
+  border-radius: 8px;
+}
+
+.color-rule-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.color-rule-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--j12-white);
+  margin-bottom: 3px;
+}
+
+.color-rule-desc {
+  font-size: 12px;
+  color: var(--j12-white);
+  opacity: 0.5;
+  line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────
+   CSS CODE BLOCK
+   ───────────────────────────────────────────── */
+.code-block {
+  background: #0D0D0D;
+  border-radius: 10px;
+  padding: 28px 32px;
+  margin: 20px 0;
+  border: 0.5px solid rgba(245,244,240,0.06);
+  overflow-x: auto;
+}
+
+.code-block pre {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--j12-white);
+  opacity: 0.75;
+  white-space: pre;
+}
+
+.code-block .cv { color: var(--j12-green); opacity: 1; }
+.code-block .val { color: var(--j12-gold); opacity: 1; }
+.code-block .cmt { color: var(--j12-white); opacity: 0.25; }
+.code-block .hd { color: var(--j12-white); opacity: 0.4; }
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY
+   ───────────────────────────────────────────── */
+.font-card {
+  background: var(--j12-charcoal);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.font-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 22px 14px;
+  border-bottom: 0.5px solid var(--j12-dim);
+}
+
+.font-name {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--j12-white);
+  margin-bottom: 2px;
+}
+
+.font-url {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--j12-green);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+
+.font-url:hover { text-decoration: underline; }
+.font-url.gold { color: var(--j12-gold); }
+
+.font-badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+
+.badge {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  padding: 3px 9px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.badge-green { background: rgba(108,207,109,0.12); color: #5abf5b; }
+.badge-gold  { background: rgba(224,184,109,0.12); color: #c9a05a; }
+
+.font-sample {
+  padding: 24px 22px;
+  border-bottom: 0.5px solid var(--j12-dim);
+}
+
+.font-body-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.font-use-col {
+  padding: 16px 22px;
+  border-right: 0.5px solid var(--j12-dim);
+}
+
+.font-use-col:last-child { border-right: none; }
+
+.font-use-head {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--j12-green);
+  margin-bottom: 10px;
+}
+
+.font-use-head.gold { color: var(--j12-gold); }
+
+.font-use-item {
+  font-size: 11.5px;
+  color: var(--j12-white);
+  opacity: 0.52;
+  line-height: 1.6;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  position: relative;
+}
+
+.font-use-item::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--j12-green);
+  opacity: 0.7;
+}
+
+.font-use-item.gold-dot::before { color: var(--j12-gold); }
+
+.premiere-row {
+  padding: 14px 22px;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 0.5px solid var(--j12-dim);
+}
+
+.premiere-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--j12-gold);
+  white-space: nowrap;
+}
+
+.premiere-value {
+  font-size: 11.5px;
+  color: var(--j12-white);
+  opacity: 0.5;
+}
+
+/* ─────────────────────────────────────────────
+   SPEC TABLE
+   ───────────────────────────────────────────── */
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.spec-table th {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--j12-white);
+  opacity: 0.28;
+  text-align: left;
+  padding: 8px 14px;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 0.5px solid var(--j12-dim);
+}
+
+.spec-table td {
+  padding: 10px 14px;
+  border-bottom: 0.5px solid var(--j12-dim);
+  vertical-align: top;
+}
+
+.spec-table td:first-child {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--j12-green);
+  white-space: nowrap;
+  width: 22%;
+}
+
+.spec-table tr.gold-row td:first-child { color: var(--j12-gold); }
+
+.spec-table td:last-child {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--j12-white);
+  opacity: 0.55;
+  line-height: 1.5;
+}
+
+.spec-table tbody tr:last-child td { border-bottom: none; }
+
+.spec-wrap {
+  background: var(--j12-charcoal);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 0.5px solid rgba(245,244,240,0.06);
+  margin-bottom: 20px;
+}
+
+/* ─────────────────────────────────────────────
+   DO / DON'T
+   ───────────────────────────────────────────── */
+.dd-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.do-col, .dont-col {
+  background: var(--j12-charcoal);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.do-header {
+  padding: 12px 18px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: rgba(108,207,109,0.1);
+  color: #5abf5b;
+  border-bottom: 0.5px solid var(--j12-dim);
+}
+
+.dont-header {
+  padding: 12px 18px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: rgba(220,80,60,0.1);
+  color: #dc5040;
+  border-bottom: 0.5px solid var(--j12-dim);
+}
+
+.dd-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 18px;
+  border-bottom: 0.5px solid var(--j12-dim);
+  font-size: 12px;
+  color: var(--j12-white);
+  opacity: 0.65;
+  line-height: 1.45;
+}
+
+.dd-item:last-child { border-bottom: none; }
+
+.dd-item::before {
+  content: '✓';
+  color: #5abf5b;
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.dont-col .dd-item::before {
+  content: '✕';
+  color: #dc5040;
+}
+
+/* ─────────────────────────────────────────────
+   ECOSYSTEM MAP
+   ───────────────────────────────────────────── */
+.eco-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.eco-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(108,207,109,0.18);
+}
+
+.eco-card.gold-eco { border-color: rgba(224,184,109,0.18); }
+
+.eco-header {
+  padding: 18px 22px 14px;
+  background: rgba(108,207,109,0.06);
+  border-bottom: 0.5px solid var(--j12-dim);
+}
+
+.eco-card.gold-eco .eco-header { background: rgba(224,184,109,0.06); }
+
+.eco-series {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--j12-green);
+  margin-bottom: 2px;
+}
+
+.eco-card.gold-eco .eco-series { color: var(--j12-gold); }
+
+.eco-sub {
+  font-size: 12px;
+  color: var(--j12-white);
+  opacity: 0.42;
+}
+
+.eco-body { padding: 16px 22px; }
+
+.eco-section-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--j12-green);
+  margin-bottom: 8px;
+  margin-top: 12px;
+}
+
+.eco-card.gold-eco .eco-section-label { color: var(--j12-gold); }
+
+.eco-item {
+  font-size: 12px;
+  color: var(--j12-white);
+  opacity: 0.55;
+  padding: 3px 0 3px 12px;
+  position: relative;
+  line-height: 1.45;
+}
+
+.eco-item::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--j12-green);
+}
+
+.eco-card.gold-eco .eco-item::before { color: var(--j12-gold); }
+
+/* ─────────────────────────────────────────────
+   CLAUDE TOKEN SHEET
+   ───────────────────────────────────────────── */
+.token-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+
+.token-table .token-section-row td {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--j12-gold);
+  padding: 14px 14px 6px;
+  background: rgba(224,184,109,0.05);
+  border-bottom: 0.5px solid rgba(224,184,109,0.15);
+}
+
+.token-table td {
+  padding: 9px 14px;
+  border-bottom: 0.5px solid var(--j12-dim);
+  vertical-align: top;
+}
+
+.token-table td:first-child {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--j12-green);
+  width: 28%;
+  white-space: nowrap;
+}
+
+.token-table td.gold-t { color: var(--j12-gold) !important; }
+
+.token-table td:nth-child(2) {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--j12-white);
+  opacity: 0.6;
+  width: 32%;
+}
+
+.token-table td:nth-child(3) {
+  font-size: 11px;
+  color: var(--j12-white);
+  opacity: 0.4;
+}
+
+.token-table th {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--j12-white);
+  opacity: 0.25;
+  text-align: left;
+  padding: 9px 14px;
+  background: rgba(0,0,0,0.4);
+  border-bottom: 0.5px solid var(--j12-dim);
+}
+
+.token-table tbody tr:last-child td { border-bottom: none; }
+
+.token-wrap {
+  background: var(--j12-charcoal);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 0.5px solid rgba(245,244,240,0.06);
+}
+
+/* ─────────────────────────────────────────────
+   NAV / TOC
+   ───────────────────────────────────────────── */
+.toc {
+  background: var(--j12-charcoal);
+  border-radius: 10px;
+  padding: 22px 26px;
+  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 40px;
+}
+
+.toc-item {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 12px;
+  color: var(--j12-white);
+  opacity: 0.55;
+  padding: 5px 0;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.toc-item:hover { opacity: 0.9; }
+
+.toc-num {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--j12-green);
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────────
+   SECTION DIVIDER LABEL
+   ───────────────────────────────────────────── */
+.sub-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--j12-white);
+  opacity: 0.25;
+  margin: 28px 0 14px;
+}
+
+/* ─────────────────────────────────────────────
+   FOOTER
+   ───────────────────────────────────────────── */
+.doc-footer {
+  border-top: 0.5px solid var(--j12-dim);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--j12-white);
+  opacity: 0.5;
+}
+
+.footer-meta {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--j12-white);
+  opacity: 0.2;
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══════════════════════════════════════════
+     COVER
+═══════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-eyebrow">Master Brand Reference  ·  v2.0  ·  June 2026</div>
+  <div class="cover-brand">J12.ai</div>
+  <div class="cover-tagline">We're not gurus. We build the gurus.</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><label>Entity</label><span>J12 Consulting</span></div>
+    <div class="cover-meta-item"><label>Domain</label><span>J12.ai</span></div>
+    <div class="cover-meta-item"><label>Updated</label><span>June 2026</span></div>
+    <div class="cover-meta-item"><label>Series</label><span>Green (Public) · Gold (Internal)</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HOW TO USE
+═══════════════════════════════════════════ -->
+<div class="section" id="how-to-use">
+  <div class="section-label">How to Use This Document</div>
+  <div class="section-title">Four ways this file works</div>
+  <div class="section-rule"></div>
+  <div class="how-to-grid">
+    <div class="how-card">
+      <div class="how-card-num">01 · Email Builds</div>
+      <div class="how-card-title">HTML / CSS Reference</div>
+      <div class="how-card-desc">Copy the :root block from the Color section into every project stylesheet. Reference images 1–8 by filename. Use the email token table for every component spec.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-card-num">02 · Video Editing</div>
+      <div class="how-card-title">Premiere Pro / After Effects</div>
+      <div class="how-card-desc">Download all three fonts directly from the Google Fonts URLs in the Typography section. Install the .ttf files locally. Font names and weight specs are listed per use case.</div>
+    </div>
+    <div class="how-card gold">
+      <div class="how-card-num">03 · Claude AI Sessions</div>
+      <div class="how-card-title">Upload to Project Folder</div>
+      <div class="how-card-desc">Add this HTML file to your Claude project. Say "use J12 branding" — Claude reads the token sheet and applies every color, font, and image reference automatically.</div>
+    </div>
+    <div class="how-card gold">
+      <div class="how-card-num">04 · Thumbnails / Social</div>
+      <div class="how-card-title">Images 1–8</div>
+      <div class="how-card-desc">Reference images by number or name (1.png–6.png, J12-Full_Display.png, J12-Horizontal.png). The Logo Marks section below shows exactly which file is which mark and where to use it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TABLE OF CONTENTS
+═══════════════════════════════════════════ -->
+<nav class="toc">
+  <a class="toc-item" href="#logo-marks"><span class="toc-num">01</span> Logo Marks — Images 1–8</a>
+  <a class="toc-item" href="#colors"><span class="toc-num">02</span> Color System & Hex Codes</a>
+  <a class="toc-item" href="#typography"><span class="toc-num">03</span> Typography & Google Fonts</a>
+  <a class="toc-item" href="#email"><span class="toc-num">04</span> Email & Digital CSS Tokens</a>
+  <a class="toc-item" href="#video"><span class="toc-num">05</span> Video / Premiere Pro Guide</a>
+  <a class="toc-item" href="#rules"><span class="toc-num">06</span> Usage Rules — Do & Don't</a>
+  <a class="toc-item" href="#ecosystem"><span class="toc-num">07</span> Ecosystem Map — Green vs Gold</a>
+  <a class="toc-item" href="#claude"><span class="toc-num">08</span> Claude AI Token Sheet</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     01 LOGO MARKS
+═══════════════════════════════════════════ -->
+<div class="section" id="logo-marks">
+  <div class="section-label">01 — Logo Marks</div>
+  <div class="section-title">Images 1–8 — The Complete Approved File Set</div>
+  <p class="section-desc">Eight logo files across two series. Green for public-facing touchpoints. Gold for internal ecosystem. Two new editorial marks added in v2.0 — never mix series within a single asset.</p>
+  <div class="section-rule"></div>
+
+  <!-- ICON MARKS — 3-col grid -->
+  <div class="sub-label">Icon Marks — Square Format (1–4)</div>
+  <div class="logo-grid">
+
+    <div class="logo-card">
+      <div class="logo-stage">
+        <img src="1.png" alt="1 — Icon Clean Green">
+      </div>
+      <div class="logo-meta">
+        <div class="logo-meta-num">1.png · Green Series · Public</div>
+        <div class="logo-meta-name">Icon Clean — No Domain</div>
+        <div class="logo-meta-use">Favicons · App icons · Embossed marks · Profile avatars · Any tight-space context</div>
+        <div class="logo-meta-file">File: 1.png  ·  500×500px  ·  Background #141414</div>
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-stage dark">
+        <img src="2.png" alt="2 — Icon Clean Gold">
+      </div>
+      <div class="logo-meta">
+        <div class="logo-meta-num gold">2.png · Gold Series · Internal</div>
+        <div class="logo-meta-name">Icon Clean — No Domain</div>
+        <div class="logo-meta-use">Letterheads · Wax seals · Proposal embossing · Premium print · Internal tight-space contexts</div>
+        <div class="logo-meta-file">File: 2.png  ·  500×500px  ·  Background #111111</div>
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-stage">
+        <img src="3.png" alt="3 — Icon Full Green">
+      </div>
+      <div class="logo-meta">
+        <div class="logo-meta-num">3.png · Green Series · Public</div>
+        <div class="logo-meta-name">Icon Full — With J12.AI Domain</div>
+        <div class="logo-meta-use">Profile pictures · Video watermarks · Hero sections · Social avatars · App icons at 48px+</div>
+        <div class="logo-meta-file">File: 3.png  ·  500×500px  ·  Background #141414</div>
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-stage dark">
+        <img src="4.png" alt="4 — Icon Full Gold">
+      </div>
+      <div class="logo-meta">
+        <div class="logo-meta-num gold">4.png · Gold Series · Internal</div>
+        <div class="logo-meta-name">Icon Full — With J12.AI Domain</div>
+        <div class="logo-meta-use">Internal portals · SOP headers · Client-facing portal logins · Value sequence openers</div>
+        <div class="logo-meta-file">File: 4.png  ·  500×500px  ·  Background #111111</div>
+      </div>
+    </div>
+
+    <!-- Empty cell for grid alignment -->
+    <div style="grid-column: span 2;"></div>
+
+  </div>
+
+  <!-- WORDMARK MARKS — 2-col -->
+  <div class="sub-label">Wordmark Marks — Horizontal Format (5–6)</div>
+  <div class="wordmark-grid">
+
+    <div class="logo-card">
+      <div class="wordmark-stage">
+        <img src="5.png" alt="5 — Wordmark Green">
+      </div>
+      <div class="logo-meta">
+        <div class="logo-meta-num">5.png · Green Series · Public</div>
+        <div class="logo-meta-name">Wordmark — J12 Consulting</div>
+        <div class="logo-meta-use">Email headers · Landing pages · Social bios · Document headers · Video end cards</div>
+        <div class="logo-meta-file">File: 5.png  ·  1000×800px  ·  Background #141414</div>
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <div class="wordmark-stage dark">
+        <img src="6.png" alt="6 — Wordmark Gold">
+      </div>
+      <div class="logo-meta">
+        <div class="logo-meta-num gold">6.png · Gold Series · Internal</div>
+        <div class="logo-meta-name">Wordmark — J12 Consulting</div>
+        <div class="logo-meta-use">Proposal covers · Client decks · Internal email headers · SOP documents · Printed materials</div>
+        <div class="logo-meta-file">File: 6.png  ·  1000×800px  ·  Background #111111</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- EDITORIAL MARKS — new in v2.0 -->
+  <div class="sub-label">Editorial Marks — New in v2.0 (7–8)</div>
+
+  <!-- Full Display — wide horizontal, single card -->
+  <div class="logo-card" style="margin-bottom:16px;">
+    <div class="display-stage">
+      <img src="J12-Full_Display.png" alt="J12 Full Display — Editorial">
+    </div>
+    <div class="logo-meta">
+      <div class="logo-meta-num gold">J12-Full_Display.png · Neutral · Both Series</div>
+      <div class="logo-meta-name">Full Display — J12.ai Large Editorial</div>
+      <div class="logo-meta-use">Video intro cards · Email hero banners · Presentation openers · Large-format print · Any context where J12.ai needs to stand alone at scale</div>
+      <div class="logo-meta-file">File: J12-Full_Display.png  ·  Wide format  ·  Background #111111</div>
+    </div>
+  </div>
+
+  <!-- Horizontal dot mark -->
+  <div class="logo-card" style="margin-bottom:24px;">
+    <div class="display-stage" style="min-height:120px; padding:32px 48px;">
+      <img src="J12-Horizontal.png" alt="J12 Horizontal — Editorial Wordmark" style="max-height:60px;">
+    </div>
+    <div class="logo-meta">
+      <div class="logo-meta-num">J12-Horizontal.png · Neutral · Both Series</div>
+      <div class="logo-meta-name">Horizontal Dot Wordmark — J12 · Consulting</div>
+      <div class="logo-meta-use">Email footers · Document headers · Slide deck title bars · Landing page navbars · Any horizontal lockup context requiring maximum elegance</div>
+      <div class="logo-meta-file">File: J12-Horizontal.png  ·  Wide format  ·  Background #141414</div>
+    </div>
+  </div>
+
+  <!-- Quick Reference Table -->
+  <div class="spec-wrap">
+    <table class="spec-table">
+      <thead>
+        <tr><th>File</th><th>Mark Type</th><th>Series</th><th>Primary Use</th><th>Dimensions</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1.png</td><td style="color:var(--j12-white);opacity:0.6;">Icon Clean · No domain</td><td style="color:var(--j12-green);">Green · Public</td><td style="color:var(--j12-white);opacity:0.5;">Favicon, emboss, avatar, tight spaces</td><td style="color:var(--j12-white);opacity:0.4;">500×500</td></tr>
+        <tr class="gold-row"><td>2.png</td><td style="color:var(--j12-white);opacity:0.6;">Icon Clean · No domain</td><td style="color:var(--j12-gold);">Gold · Internal</td><td style="color:var(--j12-white);opacity:0.5;">Letterhead, wax seal, embossing</td><td style="color:var(--j12-white);opacity:0.4;">500×500</td></tr>
+        <tr><td>3.png</td><td style="color:var(--j12-white);opacity:0.6;">Icon Full · With J12.AI</td><td style="color:var(--j12-green);">Green · Public</td><td style="color:var(--j12-white);opacity:0.5;">Profile pic, watermark, hero, social</td><td style="color:var(--j12-white);opacity:0.4;">500×500</td></tr>
+        <tr class="gold-row"><td>4.png</td><td style="color:var(--j12-white);opacity:0.6;">Icon Full · With J12.AI</td><td style="color:var(--j12-gold);">Gold · Internal</td><td style="color:var(--j12-white);opacity:0.5;">Portal, SOP header, client login</td><td style="color:var(--j12-white);opacity:0.4;">500×500</td></tr>
+        <tr><td>5.png</td><td style="color:var(--j12-white);opacity:0.6;">Wordmark · J12 Consulting</td><td style="color:var(--j12-green);">Green · Public</td><td style="color:var(--j12-white);opacity:0.5;">Email header, landing page, bio</td><td style="color:var(--j12-white);opacity:0.4;">1000×800</td></tr>
+        <tr class="gold-row"><td>6.png</td><td style="color:var(--j12-white);opacity:0.6;">Wordmark · J12 Consulting</td><td style="color:var(--j12-gold);">Gold · Internal</td><td style="color:var(--j12-white);opacity:0.5;">Proposal, deck, SOP, print</td><td style="color:var(--j12-white);opacity:0.4;">1000×800</td></tr>
+        <tr><td>J12-Full_Display.png</td><td style="color:var(--j12-white);opacity:0.6;">Editorial Display · J12.ai</td><td style="color:var(--j12-white);opacity:0.5;">Both / Neutral</td><td style="color:var(--j12-white);opacity:0.5;">Video hero, email banner, intro card</td><td style="color:var(--j12-white);opacity:0.4;">Wide</td></tr>
+        <tr><td>J12-Horizontal.png</td><td style="color:var(--j12-white);opacity:0.6;">Editorial Horizontal · J12·Consulting</td><td style="color:var(--j12-white);opacity:0.5;">Both / Neutral</td><td style="color:var(--j12-white);opacity:0.5;">Email footer, nav, slide header</td><td style="color:var(--j12-white);opacity:0.4;">Wide</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     02 COLORS
+═══════════════════════════════════════════ -->
+<div class="section" id="colors">
+  <div class="section-label">02 — Color System</div>
+  <div class="section-title">Hex Codes & Usage Rules</div>
+  <p class="section-desc">Seven colors make up the entire J12 palette. Brand Black is the default for every surface. Green and Gold are the only accents — never combine them in the same asset.</p>
+  <div class="section-rule"></div>
+
+  <div class="color-grid">
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#141414;border:0.5px solid rgba(255,255,255,0.1);"></div>
+      <div class="color-info"><div class="color-name">Brand Black</div><div class="color-hex">#141414</div><div class="color-role">Primary BG · all surfaces</div></div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#111111;border:0.5px solid rgba(255,255,255,0.1);"></div>
+      <div class="color-info"><div class="color-name">Deep Black</div><div class="color-hex">#111111</div><div class="color-role">Gold series BG</div></div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#1E1E1E;"></div>
+      <div class="color-info"><div class="color-name">Charcoal</div><div class="color-hex">#1E1E1E</div><div class="color-role">Cards · sections</div></div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#6CCF6D;"></div>
+      <div class="color-info"><div class="color-name">J12 Green</div><div class="color-hex">#6CCF6D</div><div class="color-role">Public accent</div></div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#E0B86D;"></div>
+      <div class="color-info"><div class="color-name">J12 Gold</div><div class="color-hex">#E0B86D</div><div class="color-role">Internal accent</div></div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#5B8DEF;"></div>
+      <div class="color-info"><div class="color-name">J12 Blue</div><div class="color-hex">#5B8DEF</div><div class="color-role">Links only</div></div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#F5F4F0;"></div>
+      <div class="color-info"><div class="color-name">Off White</div><div class="color-hex">#F5F4F0</div><div class="color-role">Primary text</div></div>
+    </div>
+  </div>
+
+  <div class="color-rules">
+    <div class="color-rule"><div class="color-rule-dot" style="background:#6CCF6D;"></div><div><div class="color-rule-label">#6CCF6D — J12 Green</div><div class="color-rule-desc">Public series accent. One green element per visual zone. CTAs, icon borders, wordmark accent line, subtitle word highlights. Never combine with gold in the same asset.</div></div></div>
+    <div class="color-rule"><div class="color-rule-dot" style="background:#E0B86D;"></div><div><div class="color-rule-label">#E0B86D — J12 Gold</div><div class="color-rule-desc">Internal ecosystem only. Value sequences, proposals, SOPs, portals, client documents. Never combine with green in the same asset.</div></div></div>
+    <div class="color-rule"><div class="color-rule-dot" style="background:#5B8DEF;"></div><div><div class="color-rule-label">#5B8DEF — J12 Blue</div><div class="color-rule-desc">Hyperlinks and functional UI elements only. Never decorative. Not part of either brand series.</div></div></div>
+    <div class="color-rule"><div class="color-rule-dot" style="background:#F5F4F0;"></div><div><div class="color-rule-label">#F5F4F0 — Off White</div><div class="color-rule-desc">All primary text on dark backgrounds. Full opacity for headings. 55–75% opacity for body copy. 28–35% for domain labels and tertiary text. Never use pure #FFFFFF.</div></div></div>
+    <div class="color-rule"><div class="color-rule-dot" style="background:#141414;border:1px solid rgba(255,255,255,0.15);"></div><div><div class="color-rule-label">#141414 — Brand Black</div><div class="color-rule-desc">Default background for every surface without exception — video frames, email templates, landing pages, social graphics, printed materials. Use #111111 only for gold series assets.</div></div></div>
+  </div>
+
+  <div class="code-block" style="margin-top:28px;">
+    <pre><span class="hd">/* ── J12 CSS Custom Properties — paste into every project :root ── */</span>
+<span class="hd">:root {</span>
+  <span class="hd">/* Colors */</span>
+  <span class="cv">--j12-black</span>:     <span class="val">#141414</span>;          <span class="cmt">/* primary bg — all surfaces */</span>
+  <span class="cv">--j12-dark</span>:      <span class="val">#111111</span>;          <span class="cmt">/* gold series bg */</span>
+  <span class="cv">--j12-charcoal</span>:  <span class="val">#1E1E1E</span>;          <span class="cmt">/* cards, secondary surfaces */</span>
+  <span class="cv">--j12-green</span>:     <span class="val">#6CCF6D</span>;          <span class="cmt">/* public accent */</span>
+  <span class="cv">--j12-gold</span>:      <span class="val">#E0B86D</span>;          <span class="cmt">/* internal accent */</span>
+  <span class="cv">--j12-blue</span>:      <span class="val">#5B8DEF</span>;          <span class="cmt">/* links only */</span>
+  <span class="cv">--j12-white</span>:     <span class="val">#F5F4F0</span>;          <span class="cmt">/* primary text */</span>
+  <span class="cv">--j12-muted</span>:     <span class="val">rgba(245,244,240,0.58)</span>; <span class="cmt">/* secondary text */</span>
+  <span class="cv">--j12-dim</span>:       <span class="val">rgba(245,244,240,0.09)</span>; <span class="cmt">/* dividers */</span>
+
+  <span class="hd">/* Fonts */</span>
+  <span class="cv">--font-display</span>:  <span class="val">'Cormorant Garamond', serif</span>;
+  <span class="cv">--font-body</span>:     <span class="val">'Inter', sans-serif</span>;
+  <span class="cv">--font-mono</span>:     <span class="val">'Space Mono', monospace</span>;
+<span class="hd">}</span></pre>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     03 TYPOGRAPHY
+═══════════════════════════════════════════ -->
+<div class="section" id="typography">
+  <div class="section-label">03 — Typography</div>
+  <div class="section-title">Fonts, Weights & Download Links</div>
+  <p class="section-desc">Three fonts. One for display, one for body, one for labels. All free on Google Fonts. Download the .ttf files and install locally for Premiere Pro, After Effects, Figma, and any other tool.</p>
+  <div class="section-rule"></div>
+
+  <!-- CORMORANT GARAMOND -->
+  <div class="font-card">
+    <div class="font-header">
+      <div class="font-name-block">
+        <div class="font-name">Cormorant Garamond</div>
+        <a class="font-url gold" href="https://fonts.google.com/specimen/Cormorant+Garamond" target="_blank">↗ fonts.google.com/specimen/Cormorant+Garamond</a>
+      </div>
+      <div class="font-badges">
+        <span class="badge badge-gold">Light 300</span>
+        <span class="badge badge-gold">Light Italic 300i</span>
+        <span class="badge badge-gold">SemiBold 600</span>
+      </div>
+    </div>
+    <div class="font-sample" style="background:rgba(0,0,0,0.2);">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--j12-white);line-height:1;letter-spacing:-0.01em;margin-bottom:10px;">The system behind $75M</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;font-style:italic;color:var(--j12-gold);">We're not gurus. We build the gurus.</div>
+    </div>
+    <div class="font-body-area">
+      <div class="font-use-col">
+        <div class="font-use-head gold">Design Use Cases</div>
+        <div class="font-use-item gold-dot">Heroes &amp; page titles — 48–72px · Weight 300 · Off White</div>
+        <div class="font-use-item gold-dot">Section headers — 20–28px · Weight 600 · All-caps · tracked</div>
+        <div class="font-use-item gold-dot">Pull quotes &amp; taglines — Italic 300 · Gold color</div>
+        <div class="font-use-item gold-dot">Editorial marks — Weight 300–400 · wide letter-spacing for wordmark treatments</div>
+        <div class="font-use-item gold-dot">Email subject headings — 22–24px · Weight 600</div>
+      </div>
+      <div class="font-use-col">
+        <div class="font-use-head gold">CSS Spec</div>
+        <div class="font-use-item gold-dot">font-family: 'Cormorant Garamond', serif</div>
+        <div class="font-use-item gold-dot">var: --font-display</div>
+        <div class="font-use-item gold-dot">Hero: font-size 48–72px · font-weight 300 · line-height 1</div>
+        <div class="font-use-item gold-dot">Header: font-weight 600 · text-transform uppercase · letter-spacing 0.04em</div>
+        <div class="font-use-item gold-dot">Import weight string: ital,wght@0,300;0,600;1,300</div>
+      </div>
+    </div>
+    <div class="premiere-row">
+      <span class="premiere-label">Premiere Pro →</span>
+      <span class="premiere-value">Cormorant Garamond Light &nbsp;|&nbsp; Cormorant Garamond Light Italic &nbsp;|&nbsp; Cormorant Garamond SemiBold</span>
+    </div>
+  </div>
+
+  <!-- INTER -->
+  <div class="font-card">
+    <div class="font-header">
+      <div class="font-name-block">
+        <div class="font-name">Inter</div>
+        <a class="font-url" href="https://fonts.google.com/specimen/Inter" target="_blank">↗ fonts.google.com/specimen/Inter</a>
+      </div>
+      <div class="font-badges">
+        <span class="badge badge-green">Light 300</span>
+        <span class="badge badge-green">Regular 400</span>
+        <span class="badge badge-green">Medium 500</span>
+        <span class="badge badge-green">SemiBold 600</span>
+      </div>
+    </div>
+    <div class="font-sample" style="background:rgba(0,0,0,0.2);">
+      <div style="font-family:'Inter',sans-serif;font-size:15px;font-weight:400;color:var(--j12-white);opacity:0.65;line-height:1.7;max-width:580px;margin-bottom:10px;">I've never posted a video for myself. I've built the systems that made other people famous. Now I'm showing you exactly how I think about content — publicly, for the first time.</div>
+      <div style="font-family:'Inter',sans-serif;font-size:17px;font-weight:600;color:#fff;">Most people posting daily are doing it <span style="color:var(--j12-green);">wrong.</span></div>
+    </div>
+    <div class="font-body-area">
+      <div class="font-use-col">
+        <div class="font-use-head">Design Use Cases</div>
+        <div class="font-use-item">Body copy &amp; email — 13–15px · Weight 400 · line-height 1.7</div>
+        <div class="font-use-item">Video subtitles — 16–17px · Weight 600 · white + green highlights</div>
+        <div class="font-use-item">UI labels &amp; nav — 12–14px · Weight 500</div>
+        <div class="font-use-item">Caption &amp; meta — 10–12px · Weight 400 · 55% opacity</div>
+        <div class="font-use-item">CTA text — 13px · Weight 500 · all-caps · tracked</div>
+      </div>
+      <div class="font-use-col">
+        <div class="font-use-head">CSS Spec</div>
+        <div class="font-use-item">font-family: 'Inter', sans-serif</div>
+        <div class="font-use-item">var: --font-body</div>
+        <div class="font-use-item">Body: font-size 14px · font-weight 400 · line-height 1.72</div>
+        <div class="font-use-item">color: rgba(245,244,240,0.55) for email body text</div>
+        <div class="font-use-item">Import weight string: wght@300;400;500;600</div>
+      </div>
+    </div>
+    <div class="premiere-row">
+      <span class="premiere-label">Premiere Pro →</span>
+      <span class="premiere-value">Inter Regular (subtitles body) &nbsp;|&nbsp; Inter SemiBold (highlighted words)</span>
+    </div>
+  </div>
+
+  <!-- SPACE MONO -->
+  <div class="font-card">
+    <div class="font-header">
+      <div class="font-name-block">
+        <div class="font-name">Space Mono</div>
+        <a class="font-url" href="https://fonts.google.com/specimen/Space+Mono" target="_blank">↗ fonts.google.com/specimen/Space+Mono</a>
+      </div>
+      <div class="font-badges">
+        <span class="badge badge-green">Regular 400</span>
+        <span class="badge badge-green">Bold 700</span>
+      </div>
+    </div>
+    <div class="font-sample" style="background:rgba(0,0,0,0.2);">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--j12-green);margin-bottom:8px;">Content System  ·  V2.0  ·  June 2026</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,244,240,0.35);">J12 Consulting  ·  Sales.io  ·  BLOOM</div>
+    </div>
+    <div class="font-body-area">
+      <div class="font-use-col">
+        <div class="font-use-head">Design Use Cases</div>
+        <div class="font-use-item">Section eyebrows — 8–10px · Regular · all-caps · 0.18–0.22em tracking · green</div>
+        <div class="font-use-item">Metadata &amp; tags — 7–9px · Regular · all-caps</div>
+        <div class="font-use-item">Wordmark "Consulting" — 8px · Regular · 0.22em tracking · 58% opacity</div>
+        <div class="font-use-item">Icon "12" superscript — 9–12px · Regular · green or gold</div>
+        <div class="font-use-item">Email CTA buttons — 8px · Regular · all-caps · 0.16em tracking</div>
+      </div>
+      <div class="font-use-col">
+        <div class="font-use-head">CSS Spec</div>
+        <div class="font-use-item">font-family: 'Space Mono', monospace</div>
+        <div class="font-use-item">var: --font-mono</div>
+        <div class="font-use-item">Always: text-transform uppercase · letter-spacing 0.15–0.22em</div>
+        <div class="font-use-item">Label color: var(--j12-green) on dark backgrounds</div>
+        <div class="font-use-item">Import weight string: wght@400;700</div>
+      </div>
+    </div>
+    <div class="premiere-row">
+      <span class="premiere-label">Premiere Pro →</span>
+      <span class="premiere-value">Space Mono Regular (eyebrows, overlays) &nbsp;|&nbsp; Space Mono Bold (CTA emphasis)</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     04 EMAIL & DIGITAL TOKENS
+═══════════════════════════════════════════ -->
+<div class="section" id="email">
+  <div class="section-label">04 — Email & Digital</div>
+  <div class="section-title">Component Specs & CSS Tokens</div>
+  <p class="section-desc">Every email, landing page, and digital asset is built from the same token set. Two series, same structure — only the accent color and background shade change.</p>
+  <div class="section-rule"></div>
+
+  <div class="spec-wrap">
+    <table class="spec-table">
+      <thead><tr><th>Component</th><th>Green Series (Public)</th><th>Gold Series (Internal)</th></tr></thead>
+      <tbody>
+        <tr><td>Background</td><td style="color:var(--j12-white);opacity:0.6;">#141414</td><td style="color:var(--j12-gold);opacity:0.8;">#111111</td></tr>
+        <tr><td>Top rule</td><td style="color:var(--j12-white);opacity:0.6;">2px solid #6CCF6D</td><td style="color:var(--j12-gold);opacity:0.8;">2px solid #E0B86D</td></tr>
+        <tr><td>Logo</td><td style="color:var(--j12-white);opacity:0.6;">5.png or J12-Horizontal.png</td><td style="color:var(--j12-gold);opacity:0.8;">6.png or J12-Horizontal.png</td></tr>
+        <tr><td>Heading</td><td style="color:var(--j12-white);opacity:0.6;">Cormorant Garamond SemiBold · 22px · uppercase · ls 0.04em</td><td style="color:var(--j12-gold);opacity:0.8;">Same spec · Gold accent words</td></tr>
+        <tr><td>Body text</td><td style="color:var(--j12-white);opacity:0.6;">Inter 400 · 14px · lh 1.72 · rgba(245,244,240,0.55)</td><td style="color:var(--j12-gold);opacity:0.8;">Same spec</td></tr>
+        <tr><td>CTA button</td><td style="color:var(--j12-white);opacity:0.6;">bg #6CCF6D · color #141414 · Space Mono 8px · uppercase</td><td style="color:var(--j12-gold);opacity:0.8;">bg #E0B86D · color #111111 · Space Mono 8px · uppercase</td></tr>
+        <tr><td>Footer text</td><td style="color:var(--j12-white);opacity:0.6;">Space Mono · 8px · 0.14em tracking · opacity 0.22</td><td style="color:var(--j12-gold);opacity:0.8;">Same spec</td></tr>
+        <tr><td>Footer logo</td><td style="color:var(--j12-white);opacity:0.6;">J12-Horizontal.png · max-height 24px</td><td style="color:var(--j12-gold);opacity:0.8;">J12-Horizontal.png · max-height 24px</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     05 VIDEO / PREMIERE PRO
+═══════════════════════════════════════════ -->
+<div class="section" id="video">
+  <div class="section-label">05 — Video</div>
+  <div class="section-title">Premiere Pro & After Effects Guide</div>
+  <p class="section-desc">Install all three fonts locally before opening any template. Background is always #141414. Watermark uses 3.png at 24–32px opacity in the lower-right corner.</p>
+  <div class="section-rule"></div>
+
+  <div class="spec-wrap">
+    <table class="spec-table">
+      <thead><tr><th>Element</th><th>Spec</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Frame BG</td><td style="color:var(--j12-white);opacity:0.6;">#141414 always</td><td style="color:var(--j12-white);opacity:0.4;">Never pure black #000000</td></tr>
+        <tr><td>Subtitles</td><td style="color:var(--j12-white);opacity:0.6;">Inter SemiBold 600 · 17px</td><td style="color:var(--j12-white);opacity:0.4;">White body · #6CCF6D for key-word highlights</td></tr>
+        <tr><td>Eyebrow overlay</td><td style="color:var(--j12-white);opacity:0.6;">Space Mono Regular · 9px · uppercase</td><td style="color:var(--j12-white);opacity:0.4;">letter-spacing 0.18em · color #6CCF6D</td></tr>
+        <tr><td>Hero title</td><td style="color:var(--j12-white);opacity:0.6;">Cormorant Garamond Light 300 · 64px</td><td style="color:var(--j12-white);opacity:0.4;">#F5F4F0 on #141414 background</td></tr>
+        <tr><td>Lower third name</td><td style="color:var(--j12-white);opacity:0.6;">Cormorant Garamond SemiBold 600</td><td style="color:var(--j12-white);opacity:0.4;">Name in CG · descriptor in Inter muted</td></tr>
+        <tr><td>Watermark</td><td style="color:var(--j12-white);opacity:0.6;">3.png · lower-right · 24–32% opacity</td><td style="color:var(--j12-white);opacity:0.4;">Scale to ~80px height max</td></tr>
+        <tr><td>Intro card logo</td><td style="color:var(--j12-white);opacity:0.6;">J12-Full_Display.png centered</td><td style="color:var(--j12-white);opacity:0.4;">Fade in over first 1.5s · #111111 BG</td></tr>
+        <tr><td>End card</td><td style="color:var(--j12-white);opacity:0.6;">5.png or J12-Horizontal.png</td><td style="color:var(--j12-white);opacity:0.4;">Centered on #141414 · fade out</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     06 USAGE RULES
+═══════════════════════════════════════════ -->
+<div class="section" id="rules">
+  <div class="section-label">06 — Usage Rules</div>
+  <div class="section-title">Do & Don't</div>
+  <p class="section-desc">These are the constraints that keep every J12 touchpoint recognizable and premium.</p>
+  <div class="section-rule"></div>
+  <div class="dd-grid">
+    <div class="do-col">
+      <div class="do-header">✓ Always Do</div>
+      <div class="dd-item">Use #141414 for all Green series backgrounds</div>
+      <div class="dd-item">Use #111111 for all Gold series backgrounds</div>
+      <div class="dd-item">Pick one accent (green or gold) per asset — never both</div>
+      <div class="dd-item">Use J12-Horizontal.png for nav bars, footers, slide headers</div>
+      <div class="dd-item">Use J12-Full_Display.png for video intros and email heroes</div>
+      <div class="dd-item">Scale logos proportionally with no cropping</div>
+      <div class="dd-item">Let the editorial marks breathe — wide clear space around them</div>
+      <div class="dd-item">Use Cormorant Garamond for all display type</div>
+      <div class="dd-item">Keep Inter for body text at 13–15px with line-height 1.7</div>
+      <div class="dd-item">Use Space Mono only for labels, tags, and eyebrows — always tracked uppercase</div>
+    </div>
+    <div class="dont-col">
+      <div class="dont-header">✕ Never Do</div>
+      <div class="dd-item">Place green and gold accent elements in the same asset</div>
+      <div class="dd-item">Use pure #FFFFFF — always use #F5F4F0</div>
+      <div class="dd-item">Add drop shadows or glows to any logo mark</div>
+      <div class="dd-item">Stretch, rotate, or distort any logo file</div>
+      <div class="dd-item">Place logos on light backgrounds without approval</div>
+      <div class="dd-item">Use Cormorant Garamond for body copy or UI labels</div>
+      <div class="dd-item">Use Inter for display titles or heroes</div>
+      <div class="dd-item">Use #5B8DEF blue as a decorative color — links only</div>
+      <div class="dd-item">Mix editorial marks with heavy graphic elements or busy backgrounds</div>
+      <div class="dd-item">Use any logo outside of its designated series context</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     07 ECOSYSTEM MAP
+═══════════════════════════════════════════ -->
+<div class="section" id="ecosystem">
+  <div class="section-label">07 — Ecosystem Map</div>
+  <div class="section-title">Green vs Gold — What Each Series Means</div>
+  <p class="section-desc">The color tells the recipient which world they're in before they read a single word. Green = public. Gold = inside. This split is non-negotiable.</p>
+  <div class="section-rule"></div>
+  <div class="eco-grid">
+
+    <div class="eco-card">
+      <div class="eco-header">
+        <div class="eco-series">Green Series</div>
+        <div class="eco-sub">Public Facing · Background #141414</div>
+      </div>
+      <div class="eco-body">
+        <div class="eco-section-label">Logo Files</div>
+        <div class="eco-item">1.png — Icon Clean (favicons, emboss, avatars)</div>
+        <div class="eco-item">3.png — Icon Full with J12.AI (profile, watermark, hero)</div>
+        <div class="eco-item">5.png — Wordmark (email header, landing page, bio)</div>
+        <div class="eco-item">J12-Horizontal.png — Editorial bar (nav, footer, slide header)</div>
+        <div class="eco-item">J12-Full_Display.png — Hero display (video intro, email hero)</div>
+        <div class="eco-section-label">Use In</div>
+        <div class="eco-item">Landing pages &amp; opt-in pages</div>
+        <div class="eco-item">Sales funnel emails (first touch)</div>
+        <div class="eco-item">Instagram / YouTube / TikTok content</div>
+        <div class="eco-item">Video watermarks &amp; profile pictures</div>
+        <div class="eco-item">Story covers &amp; reel branding</div>
+        <div class="eco-item">Public newsletter headers</div>
+        <div class="eco-item">Thumbnails &amp; social graphics</div>
+        <div class="eco-section-label">Signal</div>
+        <div class="eco-item">This is the first thing the world sees</div>
+        <div class="eco-item">First touch with the brand</div>
+        <div class="eco-item">Not yet inside the ecosystem</div>
+      </div>
+    </div>
+
+    <div class="eco-card gold-eco">
+      <div class="eco-header">
+        <div class="eco-series">Gold Series</div>
+        <div class="eco-sub">Internal Ecosystem · Background #111111</div>
+      </div>
+      <div class="eco-body">
+        <div class="eco-section-label">Logo Files</div>
+        <div class="eco-item">2.png — Icon Clean (letterhead, emboss, seal)</div>
+        <div class="eco-item">4.png — Icon Full with J12.AI (portal, SOP, client)</div>
+        <div class="eco-item">6.png — Wordmark (proposal, deck, client doc)</div>
+        <div class="eco-item">J12-Horizontal.png — Editorial bar (document header, footer)</div>
+        <div class="eco-item">J12-Full_Display.png — Hero display (VSL opener, onboarding)</div>
+        <div class="eco-section-label">Use In</div>
+        <div class="eco-item">Value sequence emails (post opt-in)</div>
+        <div class="eco-item">BLOOM &amp; internal newsletters</div>
+        <div class="eco-item">SOPs &amp; operational documents</div>
+        <div class="eco-item">Client proposals &amp; offer documents</div>
+        <div class="eco-item">Client portals &amp; onboarding</div>
+        <div class="eco-item">Printed materials &amp; letterheads</div>
+        <div class="eco-item">Webinar &amp; VSL openers</div>
+        <div class="eco-section-label">Signal</div>
+        <div class="eco-item">You are inside the J12 ecosystem</div>
+        <div class="eco-item">Post opt-in — earned access</div>
+        <div class="eco-item">Premium &amp; client-facing contexts</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     08 CLAUDE TOKEN SHEET
+═══════════════════════════════════════════ -->
+<div class="section" id="claude">
+  <div class="section-label">08 — Claude AI Quick Reference</div>
+  <div class="section-title">Token Sheet — Upload This File to Your Project</div>
+  <p class="section-desc">Add this HTML file to your Claude project folder. At the start of any build session, say <strong style="color:var(--j12-gold);font-weight:500;">"use J12 branding"</strong> — Claude reads this token sheet and auto-applies every color, font, image reference, and rule listed below.</p>
+  <div class="section-rule"></div>
+
+  <div class="token-wrap">
+    <table class="token-table">
+      <thead><tr><th>Token / Asset</th><th>Value / Spec</th><th>When to Use</th></tr></thead>
+      <tbody>
+        <tr class="token-section-row"><td colspan="3">IMAGES — Reference by filename</td></tr>
+        <tr><td>1.png</td><td>500×500 · Green Clean icon</td><td>Favicon, emboss, avatar, tight-space — PUBLIC</td></tr>
+        <tr><td class="gold-t">2.png</td><td>500×500 · Gold Clean icon</td><td>Letterhead, wax seal, embossing — INTERNAL</td></tr>
+        <tr><td>3.png</td><td>500×500 · Green Full icon</td><td>Profile pic, watermark, hero, social — PUBLIC</td></tr>
+        <tr><td class="gold-t">4.png</td><td>500×500 · Gold Full icon</td><td>Portal, SOP header, client login — INTERNAL</td></tr>
+        <tr><td>5.png</td><td>1000×800 · Green Wordmark</td><td>Email header, landing page, bio — PUBLIC</td></tr>
+        <tr><td class="gold-t">6.png</td><td>1000×800 · Gold Wordmark</td><td>Proposal, deck, SOP, print — INTERNAL</td></tr>
+        <tr><td>J12-Full_Display.png</td><td>Wide · Editorial J12.ai display</td><td>Video hero, email banner, presentation intro — BOTH</td></tr>
+        <tr><td>J12-Horizontal.png</td><td>Wide · Editorial J12 · Consulting bar</td><td>Nav, footer, slide header, document bar — BOTH</td></tr>
+        <tr class="token-section-row"><td colspan="3">COLORS</td></tr>
+        <tr><td>--j12-black</td><td>#141414</td><td>Every background surface, always</td></tr>
+        <tr><td class="gold-t">--j12-dark</td><td>#111111</td><td>Gold series background only</td></tr>
+        <tr><td>--j12-charcoal</td><td>#1E1E1E</td><td>Cards and secondary surfaces</td></tr>
+        <tr><td>--j12-green</td><td>#6CCF6D</td><td>Public accent — CTAs, borders, highlights</td></tr>
+        <tr><td class="gold-t">--j12-gold</td><td>#E0B86D</td><td>Internal accent — never mix with green</td></tr>
+        <tr><td>--j12-blue</td><td>#5B8DEF</td><td>Links only — never decorative</td></tr>
+        <tr><td>--j12-white</td><td>#F5F4F0</td><td>Primary text on dark — never pure white</td></tr>
+        <tr><td>--j12-muted</td><td>rgba(245,244,240,0.58)</td><td>Secondary text, Consulting label</td></tr>
+        <tr><td>--j12-dim</td><td>rgba(245,244,240,0.09)</td><td>Dividers and subtle borders</td></tr>
+        <tr class="token-section-row"><td colspan="3">FONTS — Google Fonts</td></tr>
+        <tr><td>--font-display</td><td>'Cormorant Garamond', serif</td><td>Heroes, taglines, wordmark, pull quotes, editorial marks</td></tr>
+        <tr><td>--font-body</td><td>'Inter', sans-serif</td><td>Body copy, email, UI, captions</td></tr>
+        <tr><td>--font-mono</td><td>'Space Mono', monospace</td><td>Labels, tags, eyebrows — always tracked uppercase</td></tr>
+        <tr class="token-section-row"><td colspan="3">EMAIL SERIES</td></tr>
+        <tr><td>email · public</td><td>Top rule 2px #6CCF6D · bg #141414</td><td>Funnel, opt-in, social, weekly content</td></tr>
+        <tr><td class="gold-t">email · internal</td><td>Top rule 2px #E0B86D · bg #111111</td><td>Value sequence, proposal, portal, SOP</td></tr>
+        <tr><td>heading</td><td>CG SemiBold · 22px · uppercase · ls 0.04em</td><td>Email subject, section titles</td></tr>
+        <tr><td>body text</td><td>Inter 400 · 14px · lh 1.72 · opacity 0.55</td><td>All paragraph content in emails</td></tr>
+        <tr><td>CTA</td><td>Space Mono · 8px · bg=accent · color #141414</td><td>Call to action buttons</td></tr>
+        <tr class="token-section-row"><td colspan="3">VIDEO / PREMIERE PRO</td></tr>
+        <tr><td>subtitle font</td><td>Inter SemiBold 600 · 17px</td><td>White body · #6CCF6D key-word highlights</td></tr>
+        <tr><td>eyebrow overlay</td><td>Space Mono Regular · 9px · uppercase</td><td>letter-spacing 0.18em · #6CCF6D</td></tr>
+        <tr><td>hero title</td><td>Cormorant Garamond Light 300 · 64px</td><td>#F5F4F0 on #141414 background</td></tr>
+        <tr><td>lower third</td><td>CG SemiBold 600 name + Inter 400 role</td><td>Name in CG · descriptor in Inter muted</td></tr>
+        <tr><td>intro card</td><td>J12-Full_Display.png · centered</td><td>#111111 BG · fade in 1.5s</td></tr>
+        <tr><td>watermark</td><td>3.png · lower-right · 28% opacity</td><td>Scale to ~80px height · always green series</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <div class="footer-brand">J12 · Consulting</div>
+  <div class="footer-meta">Master Brand Reference · v2.0 · June 2026<br>J12.ai · Confidential</div>
+</div>
+
+</div><!-- /page -->
+</body>
+</html>
