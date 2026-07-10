@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J12 — Daily Drive + EOD Protocol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#111111;
+    --black-2:#1E1E1E;
+    --gold:#E0B86D;
+    --line:rgba(245,244,240,0.09);
+    --ivory:#F5F4F0;
+    --muted:rgba(245,244,240,0.58);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--black);
+    color:var(--ivory);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:100px 32px 140px;
+  }
+
+  /* Header */
+  header{
+    margin-bottom:80px;
+  }
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:22px;
+  }
+  h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:56px;
+    line-height:1.08;
+    margin:0 0 24px;
+    color:var(--ivory);
+  }
+  h1 em{
+    font-style:italic;
+    color:var(--gold);
+  }
+  .lede{
+    font-size:17px;
+    color:var(--muted);
+    max-width:52ch;
+    border-left:2px solid var(--gold);
+    padding-left:20px;
+  }
+
+  /* Section rhythm */
+  section{
+    margin-top:76px;
+  }
+  .section-label{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:22px;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+  h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:32px;
+    margin:0 0 18px;
+    color:var(--ivory);
+  }
+  p{margin:0 0 16px; color:var(--ivory);}
+  .muted{color:var(--muted);}
+
+  /* Rule grid (time / place) */
+  .rule-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-bottom:16px;
+  }
+  .rule-cell{
+    background:var(--black-2);
+    padding:22px 24px;
+  }
+  .rule-cell .k{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:block;
+    margin-bottom:8px;
+  }
+  .rule-cell .v{
+    font-size:16px;
+    color:var(--ivory);
+  }
+  @media(max-width:560px){
+    .rule-grid{grid-template-columns:1fr;}
+  }
+
+  /* Callout boxes */
+  .callout{
+    background:var(--black-2);
+    border:1px solid var(--line);
+    border-left:2px solid var(--gold);
+    padding:24px 26px;
+    margin:20px 0;
+  }
+  .callout .title{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+    display:block;
+  }
+  .callout p:last-child{margin-bottom:0;}
+
+  /* Field list */
+  .field{
+    margin-bottom:22px;
+    padding-left:20px;
+    border-left:1px solid var(--line);
+  }
+  .field .name{
+    font-weight:600;
+    color:var(--gold);
+    font-size:16px;
+    display:block;
+    margin-bottom:6px;
+  }
+  .field .hint{
+    color:var(--muted);
+    font-size:14.5px;
+  }
+
+  /* Template block */
+  .template{
+    background:var(--black-2);
+    border:1px solid var(--line);
+    border-top:2px solid var(--gold);
+    margin-top:24px;
+    overflow:hidden;
+  }
+  .template .bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 18px;
+    border-bottom:1px solid var(--line);
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .template pre{
+    margin:0;
+    padding:22px 24px 26px;
+    font-family:'Space Mono',monospace;
+    font-size:13.5px;
+    line-height:1.9;
+    color:var(--ivory);
+    white-space:pre-wrap;
+  }
+  .template pre b{
+    color:var(--gold);
+    font-weight:700;
+  }
+  .copy-btn{
+    font-family:'Space Mono',monospace;
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    background:var(--gold);
+    border:1px solid var(--gold);
+    color:var(--black);
+    padding:9px 16px;
+    cursor:pointer;
+    transition:all 0.15s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border-radius:2px;
+  }
+  .copy-btn:hover{
+    background:var(--gold);
+    border-color:var(--gold);
+    opacity:0.88;
+    transform:translateY(-1px);
+  }
+  .copy-btn.copied{
+    background:var(--black-2);
+    color:var(--gold);
+    border-color:var(--gold);
+  }
+  .copy-btn:focus-visible, a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:2px;
+  }
+
+  /* Example */
+  .example{
+    background:linear-gradient(180deg, rgba(224,184,109,0.06), transparent 40%), var(--black-2);
+    border:1px solid var(--line);
+    padding:28px 30px;
+    margin-top:16px;
+  }
+  .example .who{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-style:italic;
+    color:var(--gold);
+    margin-bottom:18px;
+  }
+  .example .row{
+    margin-bottom:14px;
+    font-size:15px;
+  }
+  .example .row b{
+    color:var(--gold);
+    font-weight:600;
+  }
+  .example .divider{
+    height:1px;
+    background:var(--line);
+    margin:24px 0;
+  }
+  .tag{color:var(--gold); font-weight:600;}
+
+  footer{
+    margin-top:100px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  footer .footer-logo{
+    height:24px;
+    width:auto;
+    display:block;
+    opacity:0.9;
+  }
+  footer .footer-meta{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .callout, .template, .example, .rule-cell{
+      transition:border-color 0.2s ease;
+    }
+  }
+
+  @media print{
+    body{background:var(--black);}
+    .section-label, h2, .field{ break-after:avoid; page-break-after:avoid; }
+    .callout, .template, .example, .rule-grid, .field{ break-inside:avoid; page-break-inside:avoid; }
+    section{ break-inside:avoid-page; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">J12 Consulting — Internal SOP</div>
+    <h1>Daily Drive <em>+</em> End of Day<br>Protocol</h1>
+    <p class="lede">We move as a unit or we don't move at all. Lack of communication and misalignment on tasks is the #1 thing slowing us down. This fixes that — but only if everyone runs it the same way, every day, no exceptions.</p>
+  </header>
+
+  <section>
+    <div class="section-label">Intention</div>
+
+    <div class="callout">
+      <span class="title">Why this exists</span>
+      <p>These Daily Drives and EODs are <b>massively important.</b> They're what allows the entire team to work together and move as a single unit instead of ten people pulling in ten directions. The Daily Drive is an exact description of what you're working on for the day — not a vague gesture at it. The EOD is the honest record of what actually happened. Together, they're how the team stays aligned without needing a meeting to figure out who's doing what.</p>
+    </div>
+
+    <div class="callout">
+      <span class="title">The cadence</span>
+      <p>Every morning, before you start work: your Daily Drive is due <b>before 8:00am EST.</b> Every evening, once work wraps: your EOD is due <b>before 8:00pm EST.</b> Same channel, every day, no exceptions.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">The Rule</div>
+    <div class="rule-grid">
+      <div class="rule-cell">
+        <span class="k">Daily Drive</span>
+        <span class="v">Posted before <b>8:00am EST</b></span>
+      </div>
+      <div class="rule-cell">
+        <span class="k">End of Day</span>
+        <span class="v">Posted before <b>8:00pm EST</b></span>
+      </div>
+      <div class="rule-cell">
+        <span class="k">Location</span>
+        <span class="v">One channel — DDs and EODs live together</span>
+      </div>
+      <div class="rule-cell">
+        <span class="k">Format</span>
+        <span class="v">One message per person, not a thread reply</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="title">Read before you write</span>
+      <p>Before you post your own Daily Drive, <b>read everyone else's.</b> This channel only works as an alignment tool if everyone actually knows what everyone else is doing that day. Posting your own without reading the room defeats the entire point.</p>
+    </div>
+
+    <div class="callout">
+      <span class="title">Comment on each other's posts</span>
+      <p>Reading isn't passive. If someone's Daily Drive or EOD touches something you're also working on, overlaps with your task, or you have a note or feedback on it — <b>comment directly under their post.</b> That's where real alignment happens: not just two people posting side by side, but the team actually talking to each other about the work.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">☀ Daily Drive · Before 8am EST</div>
+
+    <div class="field">
+      <span class="name">What I'm doing</span>
+      <span class="hint">The main things you're working on today.</span>
+    </div>
+    <div class="field">
+      <span class="name">What I'm going to finish</span>
+      <span class="hint">Specific, checkable — not "make progress on X."</span>
+    </div>
+    <div class="field">
+      <span class="name">What I need from the team</span>
+      <span class="hint">If it's on someone specific — new asset, clarity, a decision — <b style="color:var(--gold)">@tag them by name.</b> Don't leave it vague, and don't bury it here if it's urgent — say it in the channel directly too. Be specific, so leadership knows what to assign or extend accordingly. If nothing's needed, write "Nothing — clear runway."</span>
+    </div>
+
+    <div class="template">
+      <div class="bar">
+        <span>Daily Drive template</span>
+        <button class="copy-btn" onclick="copyBlock('dd-template', this)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy to Slack
+        </button>
+      </div>
+      <pre id="dd-template">☀️ Daily Drive
+
+What I'm doing:
+What I'm going to finish:
+What I need from the team:</pre>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">☾ End of Day · Before 8pm EST</div>
+
+    <div class="field">
+      <span class="name">What got done</span>
+      <span class="hint">Actual completed items, not effort.</span>
+    </div>
+    <div class="field">
+      <span class="name">1 piece of feedback</span>
+      <span class="hint">Editing process, new frameworks, something you need clarity on — one real thing, not a placeholder.</span>
+    </div>
+    <div class="field">
+      <span class="name">Personal win</span>
+      <span class="hint">Can be small — this stays human.</span>
+    </div>
+
+    <div class="template">
+      <div class="bar">
+        <span>End of Day template</span>
+        <button class="copy-btn" onclick="copyBlock('eod-template', this)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy to Slack
+        </button>
+      </div>
+      <pre id="eod-template">🌙 EOD
+
+What got done:
+1 piece of feedback:
+Personal win:</pre>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Standing Rules</div>
+
+    <div class="callout">
+      <span class="title">Tag directly, don't wait</span>
+      <p>If something you need — or something breaking down in communication — involves a specific person, <b>@tag them the moment you notice it.</b> Don't wait for the next DD or EOD to surface it. The whole point of this channel is speed of response, not a daily log nobody acts on until the next cycle.</p>
+    </div>
+
+    <div class="callout">
+      <span class="title">Content Meetings — Mon / Wed / Fri</span>
+      <p>This channel is the source of record for those meetings. We bring the week's Daily Drives and EODs into Monday, Wednesday, and Friday to check alignment, catch what slipped, and course-correct in real time — <b>not from memory, from what's actually been posted here.</b></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Example</div>
+
+    <div class="example">
+      <div class="who">Daily Drive — Joshua</div>
+      <div class="row"><b>What I'm doing:</b> 5 new videos being scripted, content meeting with Jack, then film those 5 videos + recording the long form coaching call</div>
+      <div class="row"><b>What I'm going to finish:</b> All tasks outlined above, completed and ready for review by end of day</div>
+      <div class="row"><b>What I need from the team:</b> Clear communication from the editors on what's getting done today and what won't</div>
+
+      <div class="divider"></div>
+
+      <div class="who">EOD — Joshua</div>
+      <div class="row"><b>What got done:</b> All tasks recorded and uploaded into Timeliner with notes — <span class="tag">@Abdull</span> <span class="tag">@Jack</span> <span class="tag">@Fortune</span></div>
+      <div class="row"><b>1 piece of feedback:</b> Use the exact subtitle notes/SOPs we created — that way revisions go faster. <span class="tag">@Abdull</span>, I'll meet with you tomorrow at 10:00am EST at Volv.</div>
+      <div class="row"><b>Personal win:</b> Amazing gym workout today, completed all my daily tasks</div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-meta">J12 Consulting · Internal SOP — v1</span>
+  </footer>
+
+</div>
+
+<script>
+function showCopied(btn){
+  const original = btn.innerHTML;
+  btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied';
+  btn.classList.add('copied');
+  setTimeout(() => {
+    btn.innerHTML = original;
+    btn.classList.remove('copied');
+  }, 1500);
+}
+
+function fallbackCopy(text){
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  textarea.style.left = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  let ok = false;
+  try {
+    ok = document.execCommand('copy');
+  } catch (err) {
+    ok = false;
+  }
+  document.body.removeChild(textarea);
+  return ok;
+}
+
+function copyBlock(id, btn){
+  const el = document.getElementById(id);
+  const text = el.innerText;
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => {
+      showCopied(btn);
+    }).catch(() => {
+      if (fallbackCopy(text)) showCopied(btn);
+    });
+  } else {
+    if (fallbackCopy(text)) showCopied(btn);
+  }
+}
+</script>
+
+</body>
+</html>
