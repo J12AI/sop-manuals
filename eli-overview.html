@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eli — Content Partnership Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #111111;
+    --gold: #E0B86D;
+    --gold-dim: rgba(224, 184, 109, 0.35);
+    --off-white: #F5F3EF;
+    --gray: #8A8A8A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--off-white);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* HERO */
+  .hero {
+    padding: 120px 0 80px;
+    border-bottom: 1px solid rgba(224, 184, 109, 0.15);
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 60px; height: 1px;
+    background: var(--gold);
+  }
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 1.05;
+    color: var(--off-white);
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero p.sub {
+    font-size: 16px;
+    color: var(--gray);
+    max-width: 480px;
+    font-weight: 300;
+  }
+
+  /* SECTION HEADERS */
+  .section { padding: 80px 0; border-bottom: 1px solid rgba(224, 184, 109, 0.1); }
+  .section:last-child { border-bottom: none; }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(224, 184, 109, 0.2);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 38px;
+    color: var(--off-white);
+    margin-bottom: 48px;
+  }
+
+  /* PILLAR CARDS */
+  .pillar {
+    padding: 32px 0;
+    border-top: 1px solid rgba(224, 184, 109, 0.12);
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+  }
+  .pillar:last-child { padding-bottom: 0; }
+  .pillar-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--gold-dim);
+    letter-spacing: 0.1em;
+  }
+  .pillar-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-top: 6px;
+  }
+  .pillar-desc { font-size: 15px; color: #C9C6C0; font-weight: 300; }
+  .pillar-desc strong { color: var(--off-white); font-weight: 500; }
+
+  @media (max-width: 640px) {
+    .pillar { grid-template-columns: 1fr; gap: 8px; }
+    .hero h1 { font-size: 44px; }
+  }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 40px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), rgba(224,184,109,0.1));
+  }
+  .month {
+    position: relative;
+    padding-bottom: 44px;
+  }
+  .month:last-child { padding-bottom: 0; }
+  .month::before {
+    content: '';
+    position: absolute;
+    left: -40px; top: 4px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--black);
+    border: 1.5px solid var(--gold);
+  }
+  .month-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .month-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--off-white);
+    margin-bottom: 10px;
+  }
+  .month-desc { font-size: 14.5px; color: #C9C6C0; font-weight: 300; max-width: 560px; }
+  .timeline-note {
+    margin-top: 16px;
+    padding: 20px 24px;
+    background: rgba(224, 184, 109, 0.06);
+    border-left: 2px solid var(--gold);
+    font-size: 14px;
+    color: var(--gray);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+  }
+
+  /* DELIVERABLES */
+  .deliverables { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(224,184,109,0.12); border: 1px solid rgba(224,184,109,0.12); }
+  .deliverable {
+    background: var(--black);
+    padding: 28px;
+  }
+  .deliverable-mark {
+    font-family: 'Space Mono', monospace;
+    color: var(--gold);
+    font-size: 13px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .deliverable-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--off-white);
+    margin-bottom: 6px;
+  }
+  .deliverable-desc { font-size: 13.5px; color: var(--gray); font-weight: 300; line-height: 1.55; }
+  @media (max-width: 640px) { .deliverables { grid-template-columns: 1fr; } }
+
+  .closing-note {
+    margin-top: 40px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--gold);
+    padding: 32px;
+    border-top: 1px solid rgba(224,184,109,0.15);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 60px 0 100px;
+    text-align: center;
+  }
+  .footer-mark {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+  .footer-mark span { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow">J12 Consulting × Eli</div>
+    <h1>The <em>gameplan</em><br>for the next 6 months.</h1>
+    <p class="sub">A working overview of the concepts, timeline, and deliverables behind our partnership — designed to grow the brand without taking from his life or work.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-label">01 — Concepts</div>
+    <div class="section-title">The Foundation</div>
+
+    <div class="pillar">
+      <div>
+        <div class="pillar-num">01</div>
+        <div class="pillar-name">Brand Architecture</div>
+      </div>
+      <div class="pillar-desc">
+        Eli's brand will be built around the intersection of <strong>lifestyle, sales, philosophy, and the gym</strong> — not a boxed-in niche, but a passionate, lived-in point of view. Positioning is left open on purpose: it will emerge from what he's genuinely drawn to, not a category forced on him upfront.
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div>
+        <div class="pillar-num">02</div>
+        <div class="pillar-name">Pillars &amp; Packaging</div>
+      </div>
+      <div class="pillar-desc">
+        We'll develop a custom Pillar and Packaging system for Eli, modeled on our internal frameworks but shaped entirely to his voice and world. <strong>Pillars</strong> define his content types, <strong>Packaging</strong> defines the formats and settings — giving every video a clear category and a repeatable structure to produce against.
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div>
+        <div class="pillar-num">03</div>
+        <div class="pillar-name">Loyal Brand Over Monetization</div>
+      </div>
+      <div class="pillar-desc">
+        We're not pushing for monetization right now — the focus is building a <strong>loyal, genuinely engaged</strong> brand. Trust and audience come first; the monetization conversation gets revisited once we're working from real data.
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div>
+        <div class="pillar-num">04</div>
+        <div class="pillar-name">Audience Discovery</div>
+      </div>
+      <div class="pillar-desc">
+        Since we're not niching him down, content across lifestyle, sales, philosophy, and the gym will be tested deliberately in this phase to see what he's most passionate about <strong>and</strong> what pulls real engagement. Audience and direction get built together — not assumed.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">02 — Timeline</div>
+    <div class="section-title">First 3 Months</div>
+
+    <div class="timeline">
+      <div class="month">
+        <div class="month-tag">Month One</div>
+        <div class="month-title">Foundation</div>
+        <div class="month-desc">Define pillars &amp; packaging, set up systems (filming, editing pipeline, SOPs), begin consistent posting, editor onboarded to his team.</div>
+      </div>
+      <div class="month">
+        <div class="month-tag">Month Two</div>
+        <div class="month-title">Audience Testing</div>
+        <div class="month-desc">Push volume across pillars, track what resonates, start narrowing tone and direction based on real data.</div>
+      </div>
+      <div class="month">
+        <div class="month-tag">Month Three</div>
+        <div class="month-title">Review &amp; Plan Forward</div>
+        <div class="month-desc">Assess what's working, refine packaging, and use the data and feedback from these three months to decide direction and scope for what's next.</div>
+      </div>
+    </div>
+
+    <div class="timeline-note">"The next three months will be shaped by what we learn in these first three."</div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">03 — Deliverables</div>
+    <div class="section-title">What's Included</div>
+
+    <div class="deliverables">
+      <div class="deliverable">
+        <span class="deliverable-mark">◆</span>
+        <div class="deliverable-title">2x Weekly Zoom Calls</div>
+        <div class="deliverable-desc">Strategy and review sessions to stay aligned and keep momentum moving each week.</div>
+      </div>
+      <div class="deliverable">
+        <span class="deliverable-mark">◆</span>
+        <div class="deliverable-title">Ongoing Communication</div>
+        <div class="deliverable-desc">Direct, day-to-day support for quick questions, fast turnarounds, and anything in between.</div>
+      </div>
+      <div class="deliverable">
+        <span class="deliverable-mark">◆</span>
+        <div class="deliverable-title">Content Review</div>
+        <div class="deliverable-desc">Scripts, footage, and cuts reviewed to keep quality and consistency high.</div>
+      </div>
+      <div class="deliverable">
+        <span class="deliverable-mark">◆</span>
+        <div class="deliverable-title">Strategy Build &amp; Iteration</div>
+        <div class="deliverable-desc">Pillars, packaging, and positioning refined continuously based on real performance.</div>
+      </div>
+      <div class="deliverable">
+        <span class="deliverable-mark">◆</span>
+        <div class="deliverable-title">Dedicated Video Editor</div>
+        <div class="deliverable-desc">A video editor placed directly on his team to keep the content engine running.</div>
+      </div>
+      <div class="deliverable">
+        <span class="deliverable-mark">◆</span>
+        <div class="deliverable-title">Ongoing SOP Deliverables</div>
+        <div class="deliverable-desc">As systems and SOPs are built out for J12 and JJ's content, they're passed directly to Eli's team as well.</div>
+      </div>
+    </div>
+
+    <div class="closing-note">Built to grow the brand — without taking from his life, or his work.</div>
+  </section>
+
+  <footer>
+    <div class="footer-mark">J12 <span>×</span> Eli — Partnership Overview</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
