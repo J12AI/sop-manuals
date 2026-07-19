@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Short Form Edit System — Farouk · sales.io</title>
+<style>
+  :root{
+    --black: #0A0A0A;
+    --paper: #FAF8F6;
+    --white: #FFFFFF;
+    --terracotta: #E25435;
+    --terracotta-dim: rgba(226,84,53,0.12);
+    --stone: #8C8880;
+    --line: #E8E3DC;
+    --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    --body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --mono: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--black);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--terracotta); color:var(--white);}
+
+  /* ---------- layout shell ---------- */
+  .shell{ display:flex; max-width:1180px; margin:0 auto; }
+  .nav{
+    width:220px; flex-shrink:0; position:sticky; top:0; height:100vh;
+    padding:48px 0 48px 32px; overflow-y:auto;
+  }
+  .nav-brand{ font-family:var(--mono); font-size:10px; letter-spacing:.14em; color:var(--stone); text-transform:uppercase; margin-bottom:4px;}
+  .nav-title{ font-family:var(--display); font-weight:700; font-size:15px; margin-bottom:32px;}
+  .nav-list{ list-style:none; display:flex; flex-direction:column; gap:2px; }
+  .nav-list a{
+    display:block; text-decoration:none; color:var(--stone); font-size:13px;
+    font-family:var(--mono); letter-spacing:.02em; padding:7px 10px; border-radius:6px;
+    border-left:2px solid transparent; transition:all .15s ease;
+  }
+  .nav-list a:hover{ color:var(--black); background:var(--white);}
+  .nav-list a.active{ color:var(--terracotta); border-left-color:var(--terracotta); background:var(--terracotta-dim); }
+
+  .main{ flex:1; min-width:0; padding:48px 56px 120px 56px; }
+
+  /* ---------- hero ---------- */
+  .hero{ padding-bottom:56px; border-bottom:1px solid var(--line); margin-bottom:56px; }
+  .hero-eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--terracotta); margin-bottom:18px; display:flex; align-items:center; gap:10px;
+  }
+  .hero-eyebrow::before{ content:""; width:22px; height:1px; background:var(--terracotta); display:inline-block;}
+  .hero h1{
+    font-family:var(--display); font-weight:800; font-size:44px; letter-spacing:-0.02em;
+    line-height:1.05; margin-bottom:18px; max-width:640px;
+  }
+  .hero p.sub{ font-size:17px; color:#3A3835; max-width:560px; margin-bottom:28px;}
+  .hero-meta{ display:flex; gap:28px; flex-wrap:wrap; }
+  .meta-item{ }
+  .meta-item .k{ font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--stone); margin-bottom:4px;}
+  .meta-item .v{ font-family:var(--display); font-weight:600; font-size:14px; }
+
+  /* ---------- sections ---------- */
+  .comms-banner{
+    background:var(--black); color:var(--white); border-radius:16px;
+    padding:26px 30px; margin-bottom:56px; border-left:4px solid var(--terracotta);
+  }
+  .comms-title{ font-family:var(--display); font-weight:800; font-size:17px; margin-bottom:8px; letter-spacing:-0.01em;}
+  .comms-banner p{ font-size:13.5px; color:#D8D5D0; max-width:680px; line-height:1.6; }
+  section{ margin-bottom:64px; scroll-margin-top:32px; }
+  .sec-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:22px; }
+  .sec-num{ font-family:var(--mono); font-size:12px; color:var(--terracotta); letter-spacing:.08em;}
+  .sec-head h2{ font-family:var(--display); font-weight:700; font-size:23px; letter-spacing:-0.01em;}
+  .sec-intro{ color:#4B4844; max-width:640px; margin-bottom:20px; font-size:15px;}
+
+  .card{ background:var(--white); border:1px solid var(--line); border-radius:14px; padding:28px 30px; }
+  .card + .card{ margin-top:14px; }
+
+  ul.spec{ list-style:none; }
+  ul.spec li{ position:relative; padding-left:20px; margin-bottom:11px; font-size:14.5px; color:#242220;}
+  ul.spec li::before{ content:"—"; position:absolute; left:0; color:var(--terracotta); font-weight:700;}
+  ul.spec li b{ font-weight:650; }
+  ul.spec li:last-child{ margin-bottom:0; }
+
+  .role-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .role-card{ background:var(--white); border:1px solid var(--line); border-radius:14px; padding:24px; }
+  .role-card .who{ font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--terracotta); margin-bottom:8px;}
+  .role-card .name{ font-family:var(--display); font-weight:700; font-size:17px; margin-bottom:10px;}
+  .role-card p{ font-size:13.5px; color:#4B4844; }
+  .placeholder{ background:var(--terracotta-dim); color:var(--terracotta); padding:1px 6px; border-radius:4px; font-family:var(--mono); font-size:12px; }
+
+  /* ---------- phone mockups ---------- */
+  .mock-row{ display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap; }
+  .phone{
+    width:220px; height:390px; border-radius:26px; background:var(--black);
+    position:relative; overflow:hidden; flex-shrink:0; box-shadow:0 18px 40px -18px rgba(0,0,0,.35);
+    border:6px solid var(--black);
+  }
+  .phone img.bgnote{ opacity:0; }
+  .phone .scene{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,.06), transparent 40%),
+      linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 60%, #050505 100%);
+  }
+  .hook-pill{
+    position:absolute; top:15%; left:50%; transform:translateX(-50%);
+    background:var(--white); color:var(--black); font-family:var(--display); font-weight:800;
+    font-size:12px; line-height:1.35; text-align:center; padding:12px 16px; border-radius:9px;
+    max-width:175px; box-shadow:0 6px 16px rgba(0,0,0,.25);
+  }
+  .caption-zone{
+    position:absolute; left:14px; right:14px; bottom:15%;
+    text-align:center; font-family:var(--display); font-weight:700; font-size:15px;
+    line-height:1.35; text-shadow:0 2px 6px rgba(0,0,0,.5);
+  }
+  .caption-zone span{ color:var(--white); transition:color .15s ease; }
+  .caption-zone span.hit{ color:var(--terracotta); }
+  .safe-face{
+    position:absolute; left:50%; top:44%; transform:translate(-50%,-50%);
+    width:96px; height:120px; border:1px dashed rgba(255,255,255,.22); border-radius:50% 50% 45% 45%;
+  }
+  .mock-label{ font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--stone); margin-top:12px; text-align:center;}
+
+  .letterbox-bar{
+    position:absolute; left:0; right:0; height:29%; background:var(--black);
+    display:flex; align-items:center; justify-content:center; padding:10px 14px; z-index:2;
+  }
+  .letterbox-bar.top{ top:0; }
+  .letterbox-bar.bottom{ bottom:0; }
+  .letterbox-video{
+    position:absolute; left:0; right:0; top:29%; height:42%;
+    background:linear-gradient(120deg,#2a2a2a,#161616); z-index:1;
+  }
+  .lb-hook{
+    background:var(--white); color:var(--black); font-family:var(--display); font-weight:800;
+    font-size:11px; line-height:1.3; text-align:center; padding:8px 10px; border-radius:8px; max-width:160px;
+  }
+  .lb-caption{
+    color:var(--white); font-family:var(--display); font-weight:700; font-size:11.5px; text-align:center; line-height:1.3;
+  }
+  .lb-caption span{ color:var(--white); }
+  .lb-caption span.hit{ color:var(--terracotta); }
+
+  .annotate{ flex:1; min-width:260px; display:flex; flex-direction:column; gap:16px; padding-top:6px;}
+  .anno-line{ display:flex; gap:12px; }
+  .anno-dot{ width:7px; height:7px; border-radius:50%; background:var(--terracotta); margin-top:6px; flex-shrink:0;}
+  .anno-text b{ display:block; font-family:var(--display); font-weight:650; font-size:14px; margin-bottom:2px;}
+  .anno-text span{ font-size:13.5px; color:#4B4844; }
+  .annotate.compact{ gap:18px; }
+  .annotate.compact .anno-text b{ font-size:13px; }
+  .annotate.compact .anno-text span{ font-size:12.5px; line-height:1.55; }
+
+  /* ---------- swatches ---------- */
+  .swatches{ display:flex; gap:14px; flex-wrap:wrap; }
+  .swatch{ width:150px; }
+  .swatch .chip{ width:100%; height:64px; border-radius:10px; border:1px solid var(--line); margin-bottom:8px;}
+  .swatch .hex{ font-family:var(--mono); font-size:12px; }
+  .swatch .name{ font-size:12px; color:var(--stone); }
+
+  /* ---------- reference video grid ---------- */
+  .ref-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:14px; }
+  .ref-card{
+    border:1px solid var(--line); border-radius:14px; padding:20px; background:var(--white);
+    display:flex; flex-direction:column; gap:8px; text-decoration:none; color:inherit;
+    transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+  }
+  .ref-card:hover{ border-color:var(--terracotta); transform:translateY(-2px); box-shadow:0 10px 24px -14px rgba(226,84,53,.35); }
+  .ref-label{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--terracotta); }
+  .ref-link{ font-family:var(--display); font-weight:650; font-size:14.5px; color:var(--black); word-break:break-all; }
+  .ref-note{ font-size:12.5px; color:var(--stone); line-height:1.5; }
+  .ref-add{
+    border:1.5px dashed var(--line); border-radius:14px; min-height:120px;
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;
+    color:var(--stone); font-family:var(--mono); font-size:11.5px; text-align:center; padding:20px;
+  }
+  .ref-add .plus{ font-size:22px; color:var(--terracotta); font-family:var(--display); font-weight:300;}
+
+  /* ---------- review checklist ---------- */
+  .checklist{ display:flex; flex-direction:column; gap:0; }
+  .check-row{
+    display:flex; align-items:center; gap:14px; padding:15px 4px; border-bottom:1px solid var(--line);
+  }
+  .check-row:last-child{ border-bottom:none; }
+  .check-box{ width:18px; height:18px; border:1.5px solid var(--stone); border-radius:5px; flex-shrink:0; }
+  .check-row .step-owner{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--terracotta); background:var(--terracotta-dim); padding:3px 8px; border-radius:6px; margin-left:auto;
+    white-space:nowrap;
+  }
+  .check-row p{ font-size:14px; }
+
+  footer{ padding:40px 56px; text-align:center; }
+  footer p{ font-family:var(--mono); font-size:11px; color:var(--stone); letter-spacing:.06em; }
+
+  @media (max-width: 880px){
+    .nav{ display:none; }
+    .main{ padding:32px 22px 100px; }
+    .hero h1{ font-size:32px; }
+    .role-grid{ grid-template-columns:1fr; }
+    .mock-row{ flex-direction:column; align-items:center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <nav class="nav">
+    <div class="nav-brand">sales.io</div>
+    <div class="nav-title">Short Form Edit System</div>
+    <ul class="nav-list">
+      <li><a href="#purpose">01 · Purpose</a></li>
+      <li><a href="#roles">02 · Roles</a></li>
+      <li><a href="#source">03 · Source Material</a></li>
+      <li><a href="#captions">04 · Captions</a></li>
+      <li><a href="#hook">05 · On-Screen Hook</a></li>
+      <li><a href="#reference">06 · Reference Reels</a></li>
+      <li><a href="#brand">07 · Colour & Brand</a></li>
+      <li><a href="#pacing">08 · Pacing & Cutting</a></li>
+      <li><a href="#export">09 · Export & Delivery</a></li>
+      <li><a href="#review">10 · Review Process</a></li>
+    </ul>
+  </nav>
+
+  <main class="main">
+
+    <div class="hero">
+      <div class="hero-eyebrow">sales.io · editing sop</div>
+      <h1>Short Form Edit System</h1>
+      <p class="sub">Every reel Farouk cuts should be consistent, on-brand, punchy, and submittable — same visual language and caption style, every single time.</p>
+      <div class="hero-meta">
+        <div class="meta-item"><div class="k">Editor</div><div class="v">Farouk</div></div>
+        <div class="meta-item"><div class="k">Content Manager</div><div class="v">Joshua Mendoza</div></div>
+        <div class="meta-item"><div class="k">Comms</div><div class="v">Slack</div></div>
+        <div class="meta-item"><div class="k">Brand</div><div class="v">Terracotta · Black · White</div></div>
+        <div class="meta-item"><div class="k">Typeface</div><div class="v">SF Pro Bold</div></div>
+        <div class="meta-item"><div class="k">Format</div><div class="v">9:16 · 1080×1920</div></div>
+      </div>
+    </div>
+
+    <div class="comms-banner">
+      <div class="comms-title">Clear, clean communication is the whole system</div>
+      <p>Every step in this SOP is a handoff — editor to content manager, content manager back to editor, content manager to client. The pipeline only moves as fast as the notes are clear. If a cut, a hook line, or a revision isn't obvious, say so immediately rather than guessing. A quick clarifying message costs nothing; a wrong assumption costs a full re-edit.</p>
+      <p style="margin-top:10px;"><b style="color:var(--white);">Slack is the main channel for this — not WhatsApp.</b> Farouk will be onboarded into Slack, along with the rest of his logins, shortly.</p>
+    </div>
+
+    <!-- 01 PURPOSE -->
+    <section id="purpose">
+      <div class="sec-head"><span class="sec-num">01</span><h2>Purpose & Principles</h2></div>
+      <p class="sec-intro">This SOP exists so every reel that leaves the edit bay meets the same bar, regardless of who's watching it first.</p>
+      <div class="card">
+        <ul class="spec">
+          <li><b>Consistent</b> — same visual language, same caption style, every time.</li>
+          <li><b>On-brand</b> — terracotta and white only, SF Pro, clean and intentional.</li>
+          <li><b>Punchy</b> — short form must hook fast and hold. Every second earns its place.</li>
+          <li><b>Submittable</b> — the editor delivers the cut, the reviewer writes the hook title, nothing goes live without full sign-off.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 02 ROLES -->
+    <section id="roles">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Roles</h2></div>
+      <p class="sec-intro">Clear lanes, no overlap — and no step moves forward without clear communication between them.</p>
+      <div class="role-grid">
+        <div class="role-card">
+          <div class="who">Editor</div>
+          <div class="name">Farouk</div>
+          <p>Owns the cut and the captions. Delivers a complete edit with synced captions and <b>no hook title in place</b> — that's the content manager's step, not the editor's.</p>
+        </div>
+        <div class="role-card">
+          <div class="who">Content Manager & Sign-off</div>
+          <div class="name">Joshua Mendoza</div>
+          <p>Owns the hook title copy. Watches the finished cut, writes the exact on-screen hook, sends revisions back to the editor, and gives final sign-off before the reel goes to the client.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 SOURCE -->
+    <section id="source">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Source Material</h2></div>
+      <p class="sec-intro">Reels are sourced and organized on the team board. They'll be one of three types — match the edit approach to the source.</p>
+      <div class="card">
+        <ul class="spec">
+          <li><b>Dedicated reel footage</b> — filmed specifically for short form. Already framed for vertical.</li>
+          <li><b>Long form pull</b> — a moment or sequence extracted from a long form video. Needs reframing and tighter cutting.</li>
+          <li><b>Call footage</b> — pulled from a real sales call or review session. Needs reframing and tighter cutting.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 04 CAPTIONS -->
+    <section id="captions">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Captions</h2></div>
+      <p class="sec-intro">Subtitles are the single most important on-screen element in every reel — they carry the message for anyone watching on mute, which is most viewers. Get this piece exactly right. The mockup below is live: it plays the word-by-word highlight in real time so there's no ambiguity about timing or color.</p>
+      <div class="card">
+        <div class="mock-row">
+          <div>
+            <div class="phone">
+              <div class="scene"></div>
+              <div class="safe-face"></div>
+              <div class="caption-zone" id="capDemo">
+                <span data-hit="0">Prove</span> <span data-hit="1">your</span> <span data-hit="2">value</span><br>
+                <span data-hit="3">before</span> <span data-hit="4">you</span> <span data-hit="5">sell</span> <span data-hit="6">anything</span>
+              </div>
+            </div>
+            <div class="mock-label">Live caption timing demo</div>
+          </div>
+          <div class="annotate">
+            <div class="anno-line"><span class="anno-dot"></span><div class="anno-text"><b>Font & sync</b><span>SF Pro Bold. Short phrases, synced exactly to speech — never ahead, never behind.</span></div></div>
+            <div class="anno-line"><span class="anno-dot"></span><div class="anno-text"><b>Colour behaviour</b><span>White by default. Each word switches to terracotta <b style="color:var(--terracotta)">#E25435</b> at the exact frame it's spoken, then can hold or revert — pick one behaviour and keep it consistent across every reel.</span></div></div>
+            <div class="anno-line"><span class="anno-dot"></span><div class="anno-text"><b>Placement</b><span>Bottom middle of the frame by default, inside a defined safe zone that clears the face oval shown above <i>and</i> stays clear of platform UI (like/comment icons sit in the same zone on IG and TikTok). Target ~15% up from the bottom edge, not flush to it.</span></div></div>
+            <div class="anno-line"><span class="anno-dot"></span><div class="anno-text"><b>Size & readability</b><span>Large enough to read at arm's length with zero effort — no outlines, slight drop shadow only. Max 2 lines on screen at once; break early rather than shrink the type.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 HOOK -->
+    <section id="hook">
+      <div class="sec-head"><span class="sec-num">05</span><h2>On-Screen Hook</h2></div>
+      <p class="sec-intro">The hook title is the first thing a viewer reads. It has to survive a thumbnail-sized glance before the video even plays.</p>
+      <div class="card">
+        <div class="mock-row">
+          <div>
+            <div class="phone">
+              <div class="scene"></div>
+              <div class="hook-pill">Prove your value BEFORE you sell anything</div>
+              <div class="safe-face"></div>
+            </div>
+            <div class="mock-label">Hook placement, top-clear zone</div>
+          </div>
+          <div class="annotate compact">
+            <div class="anno-line"><span class="anno-dot"></span><div class="anno-text"><b>Copy & style — unchanged from spec</b><span>One short, punchy line, max two lines. Black text, SF Pro Bold, on a white rounded-rectangle background — matches the reference PDF exactly. Written by the content manager, not the editor.</span></div></div>
+            <div class="anno-line"><span class="anno-dot"></span><div class="anno-text"><b>Position, duration & handoff</b><span>Top of frame, centred, clear of the face and platform UI. Static for a minimum of 10 seconds until the opening line is fully delivered — never removed mid-sentence. Editor delivers with no title → content manager writes the exact copy → editor drops it in as the final step.</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px;">
+        <div class="mock-row">
+          <div>
+            <div class="phone">
+              <div class="scene"></div>
+              <div class="letterbox-bar top">
+                <div class="lb-hook">Prove your value BEFORE you sell anything</div>
+              </div>
+              <div class="letterbox-video"></div>
+              <div class="letterbox-bar bottom">
+                <div class="lb-caption"><span class="hit">Prove</span> your value <span>before</span> you sell</div>
+              </div>
+            </div>
+            <div class="mock-label">Horizontal source — letterboxed</div>
+          </div>
+          <div class="annotate">
+            <div class="anno-line"><span class="anno-dot"></span><div class="anno-text"><b>Default is vertical</b><span>Every export is 9:16 vertical, 1080×1920 — no exceptions to the canvas, regardless of what the source footage looks like.</span></div></div>
+            <div class="anno-line"><span class="anno-dot"></span><div class="anno-text"><b>If the source is horizontal</b><span>Letterbox it inside the 9:16 canvas rather than cropping or stretching. The hook title moves into the black bar above the video; the captions move into the black bar below it.</span></div></div>
+            <div class="anno-line"><span class="anno-dot"></span><div class="anno-text"><b>Reference</b><span>See the "Horizontal Format" card in Section 06 — that's the layout to match.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 REFERENCE REELS -->
+    <section id="reference">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Reference Reels</h2></div>
+      <p class="sec-intro"><b style="color:var(--black);">The Instagram reels below are the number one source of substance for subtitle font style</b> — the exact style, the exact animation. That's the reference to match first, before anything else on this page. As Joshua puts it:</p>
+      <p class="sec-intro" style="border-left:3px solid var(--terracotta); padding-left:16px; font-style:italic; color:#2A2825;">"Here are, obviously, our first reference pieces of how to basically do them with our subtitle fonts, but keep them in one location on the screen: either where the captions typically go in the middle, or, if it's a vertical video, underneath the frame with an on-screen hook above the video."</p>
+      <p class="sec-intro">Click a card to open the reel. Add a new one directly in the HTML when needed.</p>
+      <div class="ref-grid">
+
+        <a class="ref-card" href="https://www.instagram.com/p/DZ_RetCi3As/" target="_blank" rel="noopener">
+          <div class="ref-label">First reference — subtitle font</div>
+          <div class="ref-link">instagram.com/p/DZ_RetCi3As ↗</div>
+          <div class="ref-note">Vertical. Number one style match for caption font & animation.</div>
+        </a>
+
+        <a class="ref-card" href="https://www.instagram.com/p/DayivgSBFpT/" target="_blank" rel="noopener">
+          <div class="ref-label">First reference — subtitle font</div>
+          <div class="ref-link">instagram.com/p/DayivgSBFpT ↗</div>
+          <div class="ref-note">Vertical. Number one style match for caption font & animation.</div>
+        </a>
+
+        <a class="ref-card" href="https://www.instagram.com/p/Dan9pFFO32X/" target="_blank" rel="noopener">
+          <div class="ref-label">First reference — subtitle font</div>
+          <div class="ref-link">instagram.com/p/Dan9pFFO32X ↗</div>
+          <div class="ref-note">Vertical. Number one style match for caption font & animation.</div>
+        </a>
+
+        <a class="ref-card" href="https://www.instagram.com/p/DIdSQ0wv8OR/" target="_blank" rel="noopener">
+          <div class="ref-label">First reference — horizontal format</div>
+          <div class="ref-link">instagram.com/p/DIdSQ0wv8OR ↗</div>
+          <div class="ref-note">Hook above, captions underneath the frame — see Section 05.</div>
+        </a>
+
+        <a class="ref-card" href="https://f.io/b2eCZORD" target="_blank" rel="noopener">
+          <div class="ref-label">Secondary reference</div>
+          <div class="ref-link">f.io/b2eCZORD ↗</div>
+          <div class="ref-note">Hook rectangle baseline only — the Instagram set above leads on subtitle font style.</div>
+        </a>
+
+        <div class="ref-add">
+          <span class="plus">+</span>
+          Paste Timeliner.io link here<br>+ one line on what to notice
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 07 BRAND -->
+    <section id="brand">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Colour & Brand</h2></div>
+      <p class="sec-intro">Three colours only. Nothing else touches the frame.</p>
+      <div class="card">
+        <div class="swatches">
+          <div class="swatch"><div class="chip" style="background:#FFFFFF; border:1px solid var(--line);"></div><div class="hex">#FFFFFF</div><div class="name">White</div></div>
+          <div class="swatch"><div class="chip" style="background:#0A0A0A;"></div><div class="hex">#0A0A0A</div><div class="name">Black</div></div>
+          <div class="swatch"><div class="chip" style="background:#E25435;"></div><div class="hex">#E25435</div><div class="name">Terracotta</div></div>
+        </div>
+        <ul class="spec" style="margin-top:20px;">
+          <li>Terracotta is reserved for caption highlights and branding elements — never used as a full-frame background or overused as decoration.</li>
+          <li>Any motion graphics or lower-thirds must align to this exact three-colour scheme.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 08 PACING -->
+    <section id="pacing">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Pacing & Cutting</h2></div>
+      <div class="card">
+        <ul class="spec">
+          <li>Cut all silences, filler words, and dead air tightly.</li>
+          <li>The first three seconds must be the strongest moment in the clip — if the opening doesn't hook, reorder.</li>
+          <li>Every word should fight for its place. If removing it doesn't break the meaning, remove it.</li>
+          <li>Do not add music unless the reviewer specifies. If music is used, it sits well underneath the speaker's voice and never competes with it.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 09 EXPORT -->
+    <section id="export">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Export & Delivery</h2></div>
+      <div class="card">
+        <ul class="spec">
+          <li><b>Aspect ratio</b> — 9:16 vertical, always. Most footage will already be filmed vertical; if the source is horizontal, letterbox it inside the same 9:16 canvas — hook above, captions below (see Section 05).</li>
+          <li><b>Resolution</b> — 1080×1920.</li>
+          <li><b>Frame rate</b> — match source footage.</li>
+          <li><b>Delivery</b> — via Timeliner only. Upload to the exact item that's already set up in the content pipeline for that reel — don't create a new entry. Label it with the creator's name, reel number, and a one-line description of the clip content.</li>
+          <li><b>Hook title</b> — deliver with none in place. It's added only after the reviewer's pass.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 10 REVIEW -->
+    <section id="review">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Review Process</h2></div>
+      <div class="card">
+        <div class="checklist">
+          <div class="check-row"><div class="check-box"></div><p>Editor delivers the cut via Timeliner, and the content manager reviews it and adds revisions</p><span class="step-owner">Farouk</span></div>
+          <div class="check-row"><div class="check-box"></div><p>Content manager watches the cut and writes the exact hook title copy</p><span class="step-owner">Content Manager</span></div>
+          <div class="check-row"><div class="check-box"></div><p>Content manager sends the title copy back to the editor for revisions</p><span class="step-owner">Content Manager</span></div>
+          <div class="check-row"><div class="check-box"></div><p>Editor makes the revisions and changes, and produces a final version</p><span class="step-owner">Farouk</span></div>
+          <div class="check-row"><div class="check-box"></div><p>Content manager gives final sign-off on the complete reel</p><span class="step-owner">Content Manager</span></div>
+          <div class="check-row"><div class="check-box"></div><p>Reel is sent to the client for approval</p><span class="step-owner">Client</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer><p>sales.io · Short Form Edit System · Built for Farouk</p></footer>
+
+<script>
+  // scrollspy
+  const links = document.querySelectorAll('.nav-list a');
+  const sections = [...links].map(a => document.querySelector(a.getAttribute('href')));
+  const spy = () => {
+    let idx = 0;
+    sections.forEach((s,i) => { if (s && s.getBoundingClientRect().top < 140) idx = i; });
+    links.forEach((a,i) => a.classList.toggle('active', i===idx));
+  };
+  document.addEventListener('scroll', spy);
+  spy();
+
+  // live caption highlight demo loop
+  const spans = document.querySelectorAll('#capDemo span');
+  let i = 0;
+  setInterval(() => {
+    spans.forEach(s => s.classList.remove('hit'));
+    spans[i].classList.add('hit');
+    i = (i+1) % spans.length;
+  }, 420);
+</script>
+
+</body>
+</html>
