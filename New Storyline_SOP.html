@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Storyline SOP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#111111; --card:#1E1E1E; --border:#2A2A2A;
+    --gold:#E0B86D; --gold-lo:rgba(224,184,109,0.08); --gold-ln:rgba(224,184,109,0.35);
+    --text:#F5F4F0; --muted:rgba(245,244,240,0.58); --faint:rgba(245,244,240,0.32);
+    --fd:'Cormorant Garamond',serif; --fb:'Inter',sans-serif; --fm:'Space Mono',monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--text); font-family:var(--fb); line-height:1.65; padding:56px 24px 80px;}
+  .wrap{max-width:1180px; margin:0 auto;}
+
+  .kicker{font-family:var(--fm); font-size:12px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;}
+  h1{font-family:var(--fd); font-weight:600; font-size:44px; margin:0 0 12px; letter-spacing:.02em;}
+  .sub{color:var(--muted); font-size:15.5px; margin:0 0 44px; max-width:700px; line-height:1.75;}
+
+  /* Directory */
+  .dir{border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:72px; max-width:700px;}
+  .dir-head{font-family:var(--fm); font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); padding:16px 24px; border-bottom:1px solid var(--border); background:var(--card);}
+  .dir a{display:flex; align-items:baseline; gap:20px; padding:14px 24px; text-decoration:none; border-bottom:1px solid var(--border); transition:background .15s;}
+  .dir a:last-child{border-bottom:none;}
+  .dir a:hover{background:var(--gold-lo);}
+  .dir-num{font-family:var(--fm); font-size:12px; font-weight:700; color:var(--gold); width:60px; flex-shrink:0;}
+  .dir-label{font-size:14.5px; color:var(--muted);}
+
+  /* SOP cards */
+  .sop-card{border:1px solid var(--border); border-radius:10px; margin:0 0 64px; overflow:hidden;}
+  .sop-card-head{
+    padding:20px 30px; background:var(--card); border-bottom:1px solid var(--border);
+    display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;
+  }
+  .sop-card-num{font-family:var(--fm); font-size:12px; font-weight:700; letter-spacing:.14em; color:var(--gold);}
+  .sop-card-title{font-family:var(--fd); font-size:28px; font-weight:600; color:var(--text);}
+  .sop-card-body{padding:32px 30px;}
+
+  .lede{font-size:15px; color:var(--muted); line-height:1.75; max-width:760px; margin:0 0 26px;}
+  .lede b{color:var(--text); font-weight:500;}
+  .lede .g{color:var(--gold); font-weight:600;}
+
+  .diagram-shell{background:rgba(255,255,255,0.015); border:1px solid var(--border); border-radius:8px; padding:30px 24px; margin:0 0 26px;}
+
+  .col-label{font-family:var(--fm); font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--faint); margin:0 0 10px;}
+
+  /* Hook/Retain/Reward mapping */
+  .hrr{display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-top:8px;}
+  @media (max-width:800px){ .hrr{grid-template-columns:1fr;} }
+  .hrr-col{background:var(--card); border:1px solid var(--border); border-radius:8px; padding:22px 24px;}
+  .hrr-col.gold{border-color:var(--gold-ln);}
+  .hrr-name{font-family:var(--fd); font-size:24px; font-weight:600; color:var(--gold); margin-bottom:4px;}
+  .hrr-maps{font-family:var(--fm); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin-bottom:12px;}
+  .hrr-desc{font-size:13.5px; color:var(--muted); line-height:1.7;}
+
+  /* Sub-blocks inside card 03 */
+  .piece-block{border:1px solid var(--border); border-radius:8px; margin-bottom:22px; overflow:hidden;}
+  .piece-block-head{padding:16px 26px; background:var(--card); border-bottom:1px solid var(--border); display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
+  .piece-block-title{font-family:var(--fd); font-size:23px; font-weight:600; color:var(--gold);}
+  .piece-block-tag{font-family:var(--fm); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin-left:auto;}
+  .piece-block-body{padding:22px 26px;}
+  .piece-block-body p{font-size:14px; color:var(--muted); line-height:1.7; margin:0 0 16px;}
+  .piece-block-body p b{color:var(--text); font-weight:500;}
+
+  .type-list{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:0 0 4px;}
+  @media (max-width:800px){ .type-list{grid-template-columns:1fr;} }
+  .type-item{background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:6px; padding:16px 18px;}
+  .type-name{font-family:var(--fb); font-size:14px; font-weight:600; color:var(--gold); margin-bottom:5px;}
+  .type-desc{font-size:12.5px; color:var(--muted); line-height:1.6;}
+
+  .src-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:0 0 4px;}
+  @media (max-width:800px){ .src-grid{grid-template-columns:1fr;} }
+
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px; margin:2px 0 4px;}
+  .chip{font-family:var(--fm); font-size:11px; letter-spacing:.04em; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:6px 14px;}
+  .chip.g{color:var(--gold); border-color:var(--gold-ln);}
+
+  .ex-quote{border-left:2px solid var(--gold-ln); padding:6px 0 6px 18px; font-size:14px; font-style:italic; color:var(--muted); margin:0 0 12px;}
+
+  /* Beat cards (card 04) */
+  .beat-card{background:var(--card); border:1px solid var(--border); border-radius:6px; overflow:hidden; margin-bottom:20px;}
+  .beat-head{padding:20px 26px; border-bottom:1px solid var(--border); display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
+  .beat-num{font-family:var(--fm); font-size:13px; color:var(--gold); opacity:.75;}
+  .beat-title{font-family:var(--fd); font-size:26px; font-weight:600; color:var(--gold);}
+  .beat-signal{font-family:var(--fm); font-size:11.5px; color:var(--faint); letter-spacing:.06em; margin-left:auto; text-transform:uppercase; white-space:nowrap;}
+  .beat-body{padding:22px 26px;}
+  .beat-func{font-size:14.5px; color:var(--muted); margin:0 0 18px; line-height:1.7;}
+  .beat-func b{color:var(--text); font-weight:500;}
+  .examples{margin:0 0 4px; padding:0; list-style:none; columns:2; column-gap:24px;}
+  .examples li{font-size:13.5px; color:var(--muted); padding:8px 0 8px 16px; border-left:2px solid var(--border); margin-bottom:8px; font-style:italic; break-inside:avoid;}
+  .examples li::before{content:"“"; font-style:normal;}
+  .examples li::after{content:"”"; font-style:normal;}
+  @media (max-width:640px){ .examples{columns:1;} }
+
+  /* Verbiage bank (card 05) */
+  .verb-bank{display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;}
+  @media (max-width:860px){ .verb-bank{grid-template-columns:1fr;} }
+  .verb-col{background:var(--card); border:1px solid var(--border); border-radius:8px; padding:22px 24px;}
+  .verb-name{font-family:var(--fd); font-size:22px; font-weight:600; color:var(--gold);}
+  .verb-fn{font-family:var(--fm); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin:4px 0 14px;}
+  .verb-list{margin:0; padding:0; list-style:none;}
+  .verb-list li{font-size:13.5px; color:var(--muted); padding:7px 0; border-bottom:1px solid var(--border); font-style:italic;}
+  .verb-list li:last-child{border-bottom:none;}
+  .verb-list li.anchor{color:var(--gold); font-weight:600; font-style:normal;}
+  .verb-list li.pref{color:var(--text); font-style:normal;}
+  .verb-divider{font-family:var(--fm); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); padding:12px 0 5px; border-bottom:none !important;}
+
+  /* Ref cards (card 06) + lib cards (card 07) */
+  .ref-card,.lib-card{background:var(--card); border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:26px;}
+  .ref-head{padding:16px 26px; border-bottom:1px solid var(--border); display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:6px;}
+  .ref-title{font-family:var(--fd); font-size:21px; font-weight:600; color:var(--text);}
+  .ref-source{font-family:var(--fm); font-size:10.5px; letter-spacing:.06em; color:var(--faint); text-transform:uppercase;}
+  .ref-body{padding:22px 26px; font-size:14.5px; color:var(--muted); line-height:1.85;}
+  .ref-body p{margin:0 0 12px;}
+  .hl{color:var(--gold); font-weight:600; font-style:normal;}
+  .legend{display:flex; gap:18px; flex-wrap:wrap; padding:14px 26px; border-top:1px solid var(--border); background:rgba(224,184,109,0.04);}
+  .legend-item{font-family:var(--fm); font-size:10.5px; letter-spacing:.04em; color:var(--faint); text-transform:uppercase;}
+  .legend-item .hl{font-family:var(--fm);}
+
+  .lib-split{display:grid; grid-template-columns:1.15fr 1fr;}
+  @media (max-width:900px){ .lib-split{grid-template-columns:1fr;} }
+  .lib-script{padding:24px 28px; border-right:1px solid var(--border);}
+  @media (max-width:900px){ .lib-script{border-right:none; border-bottom:1px solid var(--border);} }
+  .lib-frame{padding:24px 28px; background:rgba(255,255,255,0.015); display:flex; flex-direction:column; justify-content:center;}
+  .mini-script{font-size:13.5px; color:var(--muted); line-height:1.75;}
+  .mini-script p{margin:0 0 11px;}
+  .lib-frame ol, .lib-frame ul{margin:0; padding-left:17px;}
+  .lib-frame li{margin-bottom:8px; font-size:13px; color:var(--muted); line-height:1.6;}
+  .lib-frame ol li{color:var(--text);}
+  .beat-tag{color:var(--gold); text-decoration:underline; text-decoration-color:var(--gold); text-decoration-thickness:2px; text-underline-offset:3px; font-weight:500;}
+
+  .footer{margin-top:24px; padding-top:20px; border-top:1px solid var(--border); font-family:var(--fm); font-size:10.5px; color:var(--faint); letter-spacing:.08em; text-transform:uppercase;}
+
+  /* Hook/Retain/Reward band map (card 02) */
+  .hrr-map{display:grid; grid-template-columns:1fr 2.6fr 1fr; gap:16px; margin-top:8px;}
+  @media (max-width:800px){ .hrr-map{grid-template-columns:1fr;} }
+  .hrr-band{
+    background:var(--card); border:1.5px solid var(--gold-ln); border-radius:8px;
+    padding:38px 12px; text-align:center;
+    font-family:var(--fd); font-size:27px; font-weight:600; color:var(--text);
+  }
+  .hrr-timeline{grid-column:1/-1; position:relative; height:26px; margin:4px 0 8px;}
+  @media (max-width:800px){ .hrr-timeline{display:none;} }
+  .hrr-bar{position:absolute; left:0; right:0; top:11px; height:4px; background:rgba(245,244,240,0.22); border-radius:3px;}
+  .hrr-tick{position:absolute; top:0; width:3px; height:26px; background:var(--gold); border-radius:2px;}
+
+  .type-ex{font-size:12.5px; font-style:italic; color:var(--gold); margin-top:9px; line-height:1.6; opacity:.92;}
+  .type-ex::before{content:"\201C";}
+  .type-ex::after{content:"\201D";}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">SOP · J12 · Gold Series</div>
+  <h1>Storyline SOP</h1>
+  <p class="sub">The full anatomy of a script — the storyline map, the opening system that earns attention, the retain system that holds it, and the connective tissue that links every beat into one continuous story. Built from the script library, with highlighted references throughout.</p>
+
+  <div class="dir">
+    <div class="dir-head">Directory</div>
+    <a href="#card-01"><span class="dir-num">Card 01</span><span class="dir-label">The Storyline Map</span></a>
+    <a href="#card-02"><span class="dir-num">Card 02</span><span class="dir-label">Why It Works — Hook / Retain / Reward</span></a>
+    <a href="#card-03"><span class="dir-num">Card 03</span><span class="dir-label">The Opening System — Initial Hook / Expansion / Mega Hook</span></a>
+    <a href="#card-04"><span class="dir-num">Card 04</span><span class="dir-label">The Retain System — Context / Conflict / Clarity / Solution</span></a>
+    <a href="#card-05"><span class="dir-num">Card 05</span><span class="dir-label">The Connective Tissue — Verbiage Bank</span></a>
+    <a href="#card-06"><span class="dir-num">Card 06</span><span class="dir-label">Highlighted Script Examples</span></a>
+    <a href="#card-07"><span class="dir-num">Card 07</span><span class="dir-label">Reference Library — Every Script, Broken Down</span></a>
+  </div>
+
+  <!-- ============ CARD 01 ============ -->
+  <section class="sop-card" id="card-01">
+    <div class="sop-card-head">
+      <span class="sop-card-num">CARD 01</span>
+      <span class="sop-card-title">The Storyline Map</span>
+    </div>
+    <div class="sop-card-body">
+      <div class="diagram-shell">
+<svg viewBox="10 0 1880 565" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block;">
+<line x1="195" y1="520" x2="225" y2="440" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="385" y1="440" x2="413" y2="360" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="577" y1="360" x2="603" y2="360" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="747" y1="360" x2="776" y2="360" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="920" y1="360" x2="952" y2="280" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="1128" y1="280" x2="1154" y2="200" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="1302" y1="200" x2="1329" y2="200" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="1501" y1="200" x2="1514" y2="120" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="1690" y1="120" x2="1711" y2="40" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<rect x="35" y="488.0" width="160" height="64" rx="8" fill="var(--card)" stroke="var(--gold-ln)" stroke-width="2"/>
+<text x="115" y="528" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">Initial Hook</text>
+<rect x="225" y="408.0" width="160" height="64" rx="8" fill="var(--card)" stroke="var(--gold-ln)" stroke-width="2"/>
+<text x="305" y="448" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">Expansion</text>
+<rect x="413" y="328.0" width="164" height="64" rx="8" fill="var(--card)" stroke="var(--gold-ln)" stroke-width="2"/>
+<text x="495" y="368" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">Mega Hook</text>
+<rect x="603" y="328.0" width="144" height="64" rx="8" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+<text x="675" y="368" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">Context</text>
+<rect x="776" y="328.0" width="144" height="64" rx="8" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+<text x="848" y="368" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">Conflict</text>
+<rect x="952" y="240.0" width="176" height="80" rx="8" fill="var(--gold-lo)" stroke="var(--gold-ln)" stroke-width="2"/>
+<text x="1040" y="276" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--gold)">Clarity</text>
+<text x="1040" y="302" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-style="italic" fill="var(--muted)">“we did xyz”</text>
+<rect x="1154" y="168.0" width="148" height="64" rx="8" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+<text x="1228" y="208" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">Solution</text>
+<rect x="1329" y="168.0" width="172" height="64" rx="8" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+<text x="1415" y="208" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">New Conflict</text>
+<rect x="1514" y="80.0" width="176" height="80" rx="8" fill="var(--gold-lo)" stroke="var(--gold-ln)" stroke-width="2"/>
+<text x="1602" y="116" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--gold)">Clarity</text>
+<text x="1602" y="142" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-style="italic" fill="var(--muted)">“we did xyz”</text>
+<rect x="1711" y="8.0" width="148" height="64" rx="8" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+<text x="1785" y="48" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">Solution</text>
+</svg>
+      </div>
+      <p class="lede">This is the foundation of every video. The three opening pieces earn the click, and everything after them is the storyline — Context into Conflict into Clarity into Solution, with each Solution setting up the next Conflict. <b>Short form runs one to three of these cycles. Long form runs multiple</b>, climbing the same shape over and over toward a bigger payoff.</p>
+    </div>
+  </section>
+
+  <!-- ============ CARD 02 ============ -->
+  <section class="sop-card" id="card-02">
+    <div class="sop-card-head">
+      <span class="sop-card-num">CARD 02</span>
+      <span class="sop-card-title">Why It Works — Hook / Retain / Reward</span>
+    </div>
+    <div class="sop-card-body">
+      <p class="lede">The storyline map lives inside the Hook / Retain / Reward method. The opening system <b>gets</b> the viewer engaged. The Context → Conflict → Clarity → Solution loop <b>keeps</b> them engaged — that entire loop lives inside Retain. And the Clarity beats are the Reward moments: the payoff lines that make the watch feel worth it and earn the next cycle.</p>
+      <div class="hrr-map">
+        <div class="hrr-band">Hook</div>
+        <div class="hrr-band">Retain</div>
+        <div class="hrr-band">Reward</div>
+        <div class="hrr-timeline">
+          <div class="hrr-bar"></div>
+          <div class="hrr-tick" style="left:0;"></div>
+          <div class="hrr-tick" style="left:21.7%;"></div>
+          <div class="hrr-tick" style="left:78.3%;"></div>
+          <div class="hrr-tick" style="right:0;"></div>
+        </div>
+        <div class="hrr-col gold">
+          <div class="hrr-name">Hook</div>
+          <div class="hrr-maps">Initial Hook · Expansion · Mega Hook</div>
+          <div class="hrr-desc">Gets them engaged. Three escalating hooks that earn attention before the story ever starts.</div>
+        </div>
+        <div class="hrr-col">
+          <div class="hrr-name">Retain</div>
+          <div class="hrr-maps">Context · Conflict · Clarity · Solution</div>
+          <div class="hrr-desc">Keeps them engaged. The full storyline loop lives inside Retain — tension built, held, and resolved on repeat.</div>
+        </div>
+        <div class="hrr-col">
+          <div class="hrr-name">Reward</div>
+          <div class="hrr-maps">The Clarity beats</div>
+          <div class="hrr-desc">Pays them for watching. Every Clarity line is a reward moment — the takeaway that makes the time spent feel earned.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CARD 03 ============ -->
+  <section class="sop-card" id="card-03">
+    <div class="sop-card-head">
+      <span class="sop-card-num">CARD 03</span>
+      <span class="sop-card-title">The Opening System — Initial Hook / Expansion / Mega Hook</span>
+    </div>
+    <div class="sop-card-body">
+      <div class="diagram-shell">
+<svg viewBox="10 0 790 320" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:760px; height:auto; display:block; margin:0 auto;">
+<line x1="240" y1="255" x2="290" y2="158" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="510" y1="158" x2="556" y2="62" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<rect x="30" y="211.0" width="210" height="88" rx="8" fill="var(--card)" stroke="var(--gold-ln)" stroke-width="2"/>
+<text x="135" y="251" text-anchor="middle" font-family="Inter,sans-serif" font-size="24" font-weight="600" fill="var(--text)">Initial Hook</text>
+<text x="135" y="277" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-style="italic" fill="var(--muted)">(Should you do xyz?)</text>
+<rect x="290" y="114.0" width="220" height="88" rx="8" fill="var(--card)" stroke="var(--gold-ln)" stroke-width="2"/>
+<text x="400" y="154" text-anchor="middle" font-family="Inter,sans-serif" font-size="24" font-weight="600" fill="var(--text)">Expansion</text>
+<text x="400" y="180" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-style="italic" fill="var(--muted)">(I spent xyz to learn this)</text>
+<rect x="556" y="18.0" width="224" height="88" rx="8" fill="var(--card)" stroke="var(--gold-ln)" stroke-width="2"/>
+<text x="668" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="24" font-weight="600" fill="var(--text)">Mega Hook</text>
+<text x="668" y="84" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-style="italic" fill="var(--muted)">(So please don’t share xyz)</text>
+</svg>
+      </div>
+      <p class="lede">Three hooks, stacked, each one buying the next few seconds. The Initial Hook stops the scroll, the Expansion gives them a reason to believe, and the Mega Hook gives them a reason to stay.</p>
+
+      <div class="piece-block">
+        <div class="piece-block-head">
+          <span class="piece-block-title">Initial Hook</span>
+          <span class="piece-block-tag">stops the scroll</span>
+        </div>
+        <div class="piece-block-body">
+          <p>The very first line. It runs in one of three modes:</p>
+          <div class="type-list">
+            <div class="type-item">
+              <div class="type-name">Open Loop</div>
+              <div class="type-desc">Creates an open loop in the viewer's mind that they now want closed. "Should you do xyz?"</div>
+            </div>
+            <div class="type-item">
+              <div class="type-name">Statement</div>
+              <div class="type-desc">A bold statement that somebody now wants to see play out.</div>
+            </div>
+            <div class="type-item">
+              <div class="type-name">Summary Hook</div>
+              <div class="type-desc">Summarizes the context of what will be covered.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="piece-block">
+        <div class="piece-block-head">
+          <span class="piece-block-title">Expansion</span>
+          <span class="piece-block-tag">gives a reason to believe</span>
+        </div>
+        <div class="piece-block-body">
+          <p>Expands on the hook — more context, more clarity, and the credibility that makes the hook land:</p>
+          <p class="ex-quote">"I spent xyz time to learn this."</p>
+          <p class="ex-quote">"It's what helped me gain 500k followers."</p>
+          <p><b>Pull from four sources</b> — facts, proof, quotes, or stories:</p>
+          <div class="src-grid">
+            <div class="type-item">
+              <div class="type-name">Fact</div>
+              <div class="type-desc">High authority.</div>
+              <div class="type-ex">Psychologists call it dialectical thinking — one of the most advanced ways a human mind can reason.</div>
+            </div>
+            <div class="type-item">
+              <div class="type-name">Proof</div>
+              <div class="type-desc">Commission screenshot, receipts, real numbers.</div>
+              <div class="type-ex">It's how Jake added 100k in 4 weeks, Alex added 34K in 10 days, and Rebekah added 10k with 1 post.</div>
+            </div>
+            <div class="type-item">
+              <div class="type-name">Quote</div>
+              <div class="type-desc">Relatable influence.</div>
+              <div class="type-ex">Sarah Blakely has this beautiful quote: the more that we experience, the more that we have to offer.</div>
+            </div>
+            <div class="type-item">
+              <div class="type-name">Story</div>
+              <div class="type-desc">Story of someone of influence.</div>
+              <div class="type-ex">I just watched the Odyssey and there's one scene I can't stop thinking about.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="piece-block">
+        <div class="piece-block-head">
+          <span class="piece-block-title">Mega Hook</span>
+          <span class="piece-block-tag">gives a reason to stay</span>
+        </div>
+        <div class="piece-block-body">
+          <p>A third hook that lands after the expansion and pulls them in dramatically. It adds more context and more clarity — but its real job is giving the viewer a deeper reason to stay:</p>
+          <p class="ex-quote">"In a previous video, I broke down my storytelling wheel and said gurus would steal it and sell it. They did."</p>
+          <p class="ex-quote">"So please don't share xyz."</p>
+          <p style="margin-bottom:8px;"><b>The Pull</b> — four ways to pull them in:</p>
+          <div class="src-grid">
+            <div class="type-item">
+              <div class="type-name">Loss</div>
+              <div class="type-desc">What it cost you to learn.</div>
+              <div class="type-ex">I paid 50k just to learn this lesson.</div>
+            </div>
+            <div class="type-item">
+              <div class="type-name">Morals</div>
+              <div class="type-desc">Transfer responsibility to the viewer.</div>
+              <div class="type-ex">I'm trusting you with this, please don't abuse it.</div>
+            </div>
+            <div class="type-item">
+              <div class="type-name">Power</div>
+              <div class="type-desc">What it can do once they have it.</div>
+              <div class="type-ex">This forces people into a trance.</div>
+            </div>
+            <div class="type-item">
+              <div class="type-name">Secret</div>
+              <div class="type-desc">Why they've never heard it before.</div>
+              <div class="type-ex">My 5 year NDA just expired so I can finally share this.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CARD 04 ============ -->
+  <section class="sop-card" id="card-04">
+    <div class="sop-card-head">
+      <span class="sop-card-num">CARD 04</span>
+      <span class="sop-card-title">The Retain System — Context / Conflict / Clarity / Solution</span>
+    </div>
+    <div class="sop-card-body">
+      <div class="diagram-shell">
+<svg viewBox="10 0 1330 400" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block;">
+<line x1="176" y1="360" x2="202" y2="360" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="354" y1="360" x2="388" y2="280" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="568" y1="280" x2="592" y2="200" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="744" y1="200" x2="774" y2="200" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="950" y1="200" x2="972" y2="120" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<line x1="1152" y1="120" x2="1176" y2="40" stroke="var(--gold)" stroke-opacity="0.6" stroke-width="2.5"/>
+<rect x="24" y="328.0" width="152" height="64" rx="8" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+<text x="100" y="368" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">Context</text>
+<rect x="202" y="328.0" width="152" height="64" rx="8" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+<text x="278" y="368" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">Conflict</text>
+<rect x="388" y="240.0" width="180" height="80" rx="8" fill="var(--gold-lo)" stroke="var(--gold-ln)" stroke-width="2"/>
+<text x="478" y="276" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--gold)">Clarity</text>
+<text x="478" y="302" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-style="italic" fill="var(--muted)">“we did xyz”</text>
+<rect x="592" y="168.0" width="152" height="64" rx="8" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+<text x="668" y="208" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">Solution</text>
+<rect x="774" y="168.0" width="176" height="64" rx="8" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+<text x="862" y="208" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">New Conflict</text>
+<rect x="972" y="80.0" width="180" height="80" rx="8" fill="var(--gold-lo)" stroke="var(--gold-ln)" stroke-width="2"/>
+<text x="1062" y="116" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--gold)">Clarity</text>
+<text x="1062" y="142" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-style="italic" fill="var(--muted)">“we did xyz”</text>
+<rect x="1176" y="8.0" width="152" height="64" rx="8" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+<text x="1252" y="48" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="600" fill="var(--text)">Solution</text>
+</svg>
+      </div>
+      <p class="lede">This is what bridges the gap after the opening system — the connective tissue of the actual video, and the part that holds the viewer's attention. In Hook / Retain / Reward terms, this whole loop <b>is</b> Retain: Context sets the stage, Conflict creates the tension that keeps them watching, Clarity pays it off (<span class="g">the Reward beat</span>), and Solution resolves it — then hands off into the next Conflict, and the loop runs again.</p>
+
+      <div class="beat-card">
+        <div class="beat-head">
+          <span class="beat-num">01</span>
+          <span class="beat-title">Context</span>
+          <span class="beat-signal">signal → a number, a claim, or a question</span>
+        </div>
+        <div class="beat-body">
+          <p class="beat-func">Cold open. No warm-up, no "hey guys." Land on a real number, a flat declarative claim, or a question aimed straight at the viewer.</p>
+          <p class="col-label">Example phrasing</p>
+          <ul class="examples">
+            <li>...how I made $12 million at 25</li>
+            <li>Why do you like some creators but not others?</li>
+            <li>Show me another creator that teaches this for free</li>
+            <li>One of the many hills I'm prepared to die on is...</li>
+            <li>There's a kind of genius no IQ test could ever measure...</li>
+            <li>I just watched the Odyssey and there's one scene I can't stop thinking about.</li>
+            <li>I don't see anyone talking about this...</li>
+            <li>It took me 7 months to learn 3 lines that forces people into a trance.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="beat-card">
+        <div class="beat-head">
+          <span class="beat-num">02</span>
+          <span class="beat-title">Conflict</span>
+          <span class="beat-signal">signal → the contrast turn</span>
+        </div>
+        <div class="beat-body">
+          <p class="beat-func">The pivot into tension. <b>"But"</b> is the most consistent word in the entire system — it's what turns a list of facts into a story. No hard contrast turn usually means no Conflict beat. (Full word bank in Card 05.)</p>
+          <p class="col-label">Example phrasing</p>
+          <ul class="examples">
+            <li>But I held back the most important part.</li>
+            <li>But here's the step that I never showed.</li>
+            <li>But that's not the part I'm talking about.</li>
+            <li>But your competitors are doing the same thing.</li>
+            <li>But most people only say the first.</li>
+            <li>But if you have a trusted brand and an audience that loves you...</li>
+            <li>But it's also why a character in a movie feels real.</li>
+            <li>But the second we make our own content, we forget it.</li>
+            <li>Yet the builder documents their own journey.</li>
+            <li>...but no one can tell you what it is.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="beat-card">
+        <div class="beat-head">
+          <span class="beat-num">03</span>
+          <span class="beat-title">Clarity</span>
+          <span class="beat-signal">signal → reframe / absolute statement</span>
+        </div>
+        <div class="beat-body">
+          <p class="beat-func">The one takeaway, landed short — the reframe ("that's not X, it's Y") or the absolute statement (always / never). This is the Reward beat: the payoff line that makes the watch feel worth it, and the beat that quietly sets up the next Conflict.</p>
+          <p class="col-label">Example phrasing</p>
+          <ul class="examples">
+            <li>That's not your taste forming, it's the algorithms.</li>
+            <li>It's that the thing that makes me successful is the same thing that makes me hard to love.</li>
+            <li>A good name a handful of people trust will always beat a famous one millions only clap for.</li>
+            <li>That contradiction is human and it's what makes people trust you.</li>
+            <li>If your life is boring, it's your fault, and it's your responsibility to change it.</li>
+            <li>Removing all the bad consistently by definition makes your content good.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="beat-card">
+        <div class="beat-head">
+          <span class="beat-num">04</span>
+          <span class="beat-title">Solution</span>
+          <span class="beat-signal">signal → the consequence turn</span>
+        </div>
+        <div class="beat-body">
+          <p class="beat-func">The resolution. <b>"So"</b> signals "here's what I actually did about it" — the mechanism, delivered. Then the Solution hands off: it becomes the setup for the New Conflict, and the loop runs again. (Full word bank in Card 05.)</p>
+          <p class="col-label">Example phrasing</p>
+          <ul class="examples">
+            <li>So to beat them you have to invert.</li>
+            <li>So there are four types of creators.</li>
+            <li>So there's an easy way to have both creator languages...</li>
+            <li>So the real story isn't even about the phone at all.</li>
+            <li>So over the last few years, I have tried to make myself more interesting.</li>
+            <li>So if your life is boring, it's your fault...</li>
+            <li>So when I'm structuring a story or a script, I ask myself...</li>
+            <li>So taste is a skill that can be learned...</li>
+            <li>So your favorite creators are usually storytellers...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CARD 05 ============ -->
+  <section class="sop-card" id="card-05">
+    <div class="sop-card-head">
+      <span class="sop-card-num">CARD 05</span>
+      <span class="sop-card-title">The Connective Tissue — Verbiage Bank</span>
+    </div>
+    <div class="sop-card-body">
+      <p class="lede">The connective tissue is the words that link one beat to the next. It runs on three families — one to enter the <b>Conflict</b>, one to give <b>Clarity</b>, and one to resolve into the <b>Solution</b> — and the rule is simple: connect with these, never with "and then." The Preferred set is the go-to language; the Also-good set is there to rotate through so scripts never sound templated.</p>
+      <div class="verb-bank">
+        <div class="verb-col">
+          <div class="verb-name">Contrast</div>
+          <div class="verb-fn">enters the Conflict</div>
+          <ul class="verb-list">
+            <li class="verb-divider">Preferred</li>
+            <li class="pref">But</li>
+            <li class="pref">Yet</li>
+            <li class="pref">Although</li>
+            <li class="pref">However</li>
+            <li class="pref">The problem is...</li>
+            <li class="pref">The truth is...</li>
+            <li class="pref">What your clients...</li>
+            <li class="pref">Until I...</li>
+            <li class="pref">Now I...</li>
+            <li class="pref">Instead...</li>
+            <li class="verb-divider">Also good</li>
+            <li>Except...</li>
+            <li>Here's the catch...</li>
+            <li>Turns out...</li>
+            <li>What no one tells you is...</li>
+            <li>Until...</li>
+          </ul>
+        </div>
+        <div class="verb-col">
+          <div class="verb-name">Clarity</div>
+          <div class="verb-fn">gives the result / clarity</div>
+          <ul class="verb-list">
+            <li class="verb-divider">Preferred</li>
+            <li class="pref">Which means...</li>
+            <li class="pref">So</li>
+            <li class="pref">Now...</li>
+            <li class="pref">As a result...</li>
+            <li class="pref">Because...</li>
+            <li class="pref">Even though...</li>
+            <li class="pref">Once...</li>
+            <li class="pref">And that's why...</li>
+            <li class="verb-divider">Also good</li>
+            <li>That's why...</li>
+            <li>From there...</li>
+            <li>Here's what I did...</li>
+            <li>The fix is...</li>
+            <li>Therefore...</li>
+            <li>Once you know that...</li>
+            <li>That's when...</li>
+          </ul>
+        </div>
+        <div class="verb-col">
+          <div class="verb-name">Solution</div>
+          <div class="verb-fn">resolves the Conflict</div>
+          <ul class="verb-list">
+            <li class="verb-divider">Preferred</li>
+            <li class="pref">Because...</li>
+            <li class="pref">This is how...</li>
+            <li class="pref">This works because...</li>
+            <li class="pref">Which is why...</li>
+            <li class="pref">Since...</li>
+            <li class="pref">I know...</li>
+            <li class="pref">As a result...</li>
+            <li class="pref">So you can...</li>
+            <li class="pref">Now you can...</li>
+            <li class="verb-divider">Also good</li>
+            <li>The reason is...</li>
+            <li>It works because...</li>
+            <li>And that's exactly why...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CARD 06 ============ -->
+  <section class="sop-card" id="card-06">
+    <div class="sop-card-head">
+      <span class="sop-card-num">CARD 06</span>
+      <span class="sop-card-title">Highlighted Script Examples</span>
+    </div>
+    <div class="sop-card-body">
+      <p class="lede">Three full scripts with the connective tissue highlighted in gold, so you can see the pattern live inside real copy rather than as an isolated example.</p>
+
+      <div class="ref-card">
+        <div class="ref-head">
+          <span class="ref-title">Secret reveal + framework teach</span>
+          <span class="ref-source">"$12M tastemaker"</span>
+        </div>
+        <div class="ref-body">
+          <p><span class="hl">This secret framework made me a disgustingly good tastemaker and it's how I made $12 million at 25.</span> In a previous video, I broke down my storytelling wheel and said gurus would steal it and sell it. They did.</p>
+          <p><span class="hl">But</span> I held back the most important part. And I desperately want to see you win, so I'm doing this for you. Everyone says taste is the last thing AI can't replace, <span class="hl">but</span> no one can tell you what it is. Taste isn't about how much you've seen because the machine has seen everything. Instead, it's connecting two things that nobody else would.</p>
+          <p>Here's the part you already know. Every amazing story lives in four parts of your life. It's easy to remember because it literally spells life. Love, identity, fitness, and earnings. You pick a moment in any one of them and go deep by asking yourself why three times to go from the safe answer to the real one to the raw one.</p>
+          <p><span class="hl">But</span> here's the step that I never showed. Once you have that raw truth, you ask yourself one more thing. Where else in my life does this same truth live? You find it in a completely different area than when you connect the two. That's taste.</p>
+          <p>Say the moment is I check my phone the second I wake up. The safe reason is because I want to stay on top of things. Well, why? Because if I'm not responsive, I feel like I'm failing people. Really, why? Because somewhere I learned my worth is how useful I am to others. Now, ask yourself, where else does that live? For me, it's love. It's why I overgive, why it can't be loved without earning it.</p>
+          <p><span class="hl">So</span> the real story isn't even about the phone at all. <span class="hl">It's that the thing that makes me successful is the same thing that makes me hard to love.</span> And only I could tell that because no one else has that exact same collision. The storytelling wheel becomes your fingerprint.</p>
+          <p><span class="hl">So</span> taste is a skill that can be learned by going all the way down in your life and connecting two areas that no one else would ever think to connect.</p>
+        </div>
+        <div class="legend">
+          <span class="legend-item"><span class="hl">Gold</span> = Conflict (contrast) / Solution (consequence) / Clarity reframe</span>
+        </div>
+      </div>
+
+      <div class="ref-card">
+        <div class="ref-head">
+          <span class="ref-title">Four-quadrant taxonomy</span>
+          <span class="ref-source">"creator languages"</span>
+        </div>
+        <div class="ref-body">
+          <p><span class="hl">Why do you like some creators but not others?</span> This is because the best creators use a primary and secondary creator language, <span class="hl">but</span> most creators only use one.</p>
+          <p><span class="hl">So</span> there are four types of creators. The analyst tells other people's story, <span class="hl">but</span> you don't know anything personal about them, <span class="hl">so</span> you don't relate or care. <span class="hl">Yet</span> the builder documents their own journey. You know a lot about them, <span class="hl">but</span> most don't have results, <span class="hl">so</span> you're not going to keep watching. The teacher, however, focuses on net new value, <span class="hl">but</span> similar to the analyst, it's hard to relate.</p>
+          <p><span class="hl">So</span> your favorite creators are usually storytellers, where they teach through their own story. You love them because you get net new value and you feel like you actually know them.</p>
+          <p><span class="hl">So</span> there's an easy way to have both creator languages without making new content. <span class="hl">Focus on providing net new value with all your views, but then post one to three stories a day so people can relate.</span></p>
+        </div>
+        <div class="legend">
+          <span class="legend-item"><span class="hl">Gold</span> = Context (question) / Conflict (contrast) / Solution (consequence) / Clarity (final instruction)</span>
+        </div>
+      </div>
+
+      <div class="ref-card">
+        <div class="ref-head">
+          <span class="ref-title">Myth-as-mirror</span>
+          <span class="ref-source">"Odyssey"</span>
+        </div>
+        <div class="ref-body">
+          <p><span class="hl">I just watched the Odyssey and there's one scene I can't stop thinking about.</span> Odysseus has this legendary bow and he's the only one that can string it.</p>
+          <p><span class="hl">But</span> that's not the part I'm talking about. After he strings it, he plucks it. He does this every time before he takes a shot. It's his warning for a fair chance because he is a man who, before anything else, is fair.</p>
+          <p><span class="hl">But</span> then he wins the biggest war in history by doing the least fair thing imaginable. A thick gift with him and his army hiding in the belly of a wooden horse. Only to later climb out and slaughter an entire city in their sleep, even the innocent people too. And when he finally reunites with his wife and tells the story, he can't even get through it. The most famous man alive, ashamed for the thing that made him famous. He had an honest name and he traded it for a famous one.</p>
+          <p>That's the trade we're all being sold right now. The financed watch, the trip you couldn't afford, it's the same Trojan horse. It gets you through the gates, it gets you the views, and then you're stuck being someone that you have to keep pretending to be. Being honest is the slower way. You tell your real story and a few people learn who you actually are.</p>
+          <p><span class="hl">But</span> <span class="hl">a good name a handful of people trust will always beat a famous one millions of people only clap for.</span> There's a line he says while he's tied to the mast of the ship listening to the song of the sirens that perfectly summarizes this. What you most want is what you most can't have. What you most can't have is what you already had and lost.</p>
+          <p>My storytelling challenge is all about taking your own lived stories and finding your own community online. Comment Odyssey and I'll send you an invite to the waitlist.</p>
+        </div>
+        <div class="legend">
+          <span class="legend-item"><span class="hl">Gold</span> = Context (personal witness) / Conflict (contrast) / Clarity (absolute statement)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CARD 07 ============ -->
+  <section class="sop-card" id="card-07">
+    <div class="sop-card-head">
+      <span class="sop-card-num">CARD 07</span>
+      <span class="sop-card-title">Reference Library — Every Script, Broken Down</span>
+    </div>
+    <div class="sop-card-body">
+      <p class="lede">The rest of the script library. Each card: <b>script on the left</b> with the connective tissue highlighted in gold, and on the right the <b>exact framework it ran</b> plus why it works — with the Context, Conflict, Solution, and Clarity beats pulled as the proof.</p>
+
+    <div class="lib-card">
+      <div class="ref-head"><span class="ref-title">Compounding list</span><span class="ref-source">"10 habits for taste"</span></div>
+      <div class="lib-split">
+        <div class="lib-script">
+          <p class="col-label">Script — connective tissue in gold</p>
+          <div class="mini-script">
+<p>10 out of 10 habits to build disgustingly good taste, <span class="hl">but</span> they become increasingly more niche.</p>
+            <p>Steal from a world you got no business in. A sport you hate, a genre you never touch.</p>
+            <p><span class="hl">Because</span> the ideas no one&#x27;s seen come from connecting two worlds no one thought to combine.</p>
+            <p>Stop building a mood board of everyone else&#x27;s life. Keep an archive of your own.</p>
+            <p>The screenshots, the voice notes, the things only you notice, and that becomes your fingerprint.</p>
+            <p>Take a song or painting you love and dig into why the artist made it, not just what they made.</p>
+            <p><span class="hl">Because</span> taste was never copying what was good, it&#x27;s understanding the why beneath it.</p>
+            <p>Study the design of the things you touch every day. The cup, the app, the chair.</p>
+            <p>Someone chose all of it, and once you start seeing the choices, you actually start seeing it appear everywhere.</p>
+            <p>List everything you love, even the stuff that feels random, and find the thread running through all of it.</p>
+            <p>Force yourself to get bored. We fill every second, the shower, the walk, the commute with someone else&#x27;s voice.</p>
+            <p>And that&#x27;s not your taste forming, it&#x27;s the algorithms.</p>
+          </div>
+        </div>
+        <div class="lib-frame">
+          <p class="col-label">Framework</p>
+          <ol>
+<li>No hook line — open directly on item 1</li>
+            <li>Numbered instructions, each with a one-line reason</li>
+            <li>Escalate specificity — broad/active items first, inward/specific items last</li>
+            <li>Concrete anchors instead of abstraction</li>
+            <li>No announced close — final item doubles as thesis</li>
+          </ol>
+          <p class="col-label" style="margin-top:33px;">Why it works — Context / Conflict / Solution / Clarity</p>
+          <ul>
+<li><span class="beat-tag">Context</span> — opens on the problem itself: taste gets "increasingly more niche," so it's genuinely hard to build.</li>
+            <li><span class="beat-tag">Conflict</span> — names the default trap without saying it outright: moodboarding "everyone else's life" instead of building your own archive.</li>
+            <li><span class="beat-tag">Solution</span> — the habits, escalating from external (steal from unrelated worlds) to internal (study your own archive, notice design, get bored on purpose).</li>
+            <li><span class="beat-tag">Clarity</span> — final line doubles as thesis: "that's not your taste forming, it's the algorithms" — no announced close needed.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-card">
+      <div class="ref-head"><span class="ref-title">Named concept + reframe</span><span class="ref-source">"dialectical thinking"</span></div>
+      <div class="lib-split">
+        <div class="lib-script">
+          <p class="col-label">Script — connective tissue in gold</p>
+          <div class="mini-script">
+<p>There&#x27;s a kind of genius no IQ test could ever measure, <span class="hl">but</span> it always shows up as a walking contradiction.</p>
+            <p>The priest who still doubts.</p>
+            <p>The surgeon who believes in miracles.</p>
+            <p>The champion who&#x27;s terrified of losing.</p>
+            <p>Psychologists call it dialectical thinking.</p>
+            <p>The ability to hold two opposite truths at once.</p>
+            <p>It&#x27;s one of the most advanced ways a human mind can reason because it fights our instinct to resolve contradiction.</p>
+            <p><span class="hl">But</span> it&#x27;s also why a character in a movie feels real.</p>
+            <p>The ones you remember are the ones you can&#x27;t decide how to feel about. Proud and grieving. Grateful and desperate.</p>
+            <p>The contradiction isn&#x27;t a flaw in them. It&#x27;s the most human thing about them.</p>
+            <p><span class="hl">But</span> the second we make our own content, we forget it. We decide we have to be one thing.</p>
+            <p>The expert who already has it figured out. <span class="hl">So</span> we hide the other half.</p>
+            <p>The part that&#x27;s still unsure and still a little scared.</p>
+            <p>And that&#x27;s exactly what makes your content forgettable.</p>
+            <p>You don&#x27;t lose your credibility being someone who knows their stuff and is still figuring it out.</p>
+            <p>That contradiction is human and it&#x27;s what makes people trust you.</p>
+            <p>Storytelling is just learning how to show up as a walking contradiction.</p>
+          </div>
+        </div>
+        <div class="lib-frame">
+          <p class="col-label">Framework</p>
+          <ol>
+<li>Unexplained-claim hook</li>
+            <li>Parallel examples — 2-3 quick instances of the same pattern</li>
+            <li>Name the concept; one-line definition</li>
+            <li>Bridge the concept to the viewer's domain</li>
+            <li>Name the common mistake; reframe it as the asset</li>
+            <li>Maxim close</li>
+          </ol>
+          <p class="col-label" style="margin-top:33px;">Why it works — Context / Conflict / Solution / Clarity</p>
+          <ul>
+<li><span class="beat-tag">Context</span> — names real contradictory figures (the doubting priest, the surgeon who believes in miracles) to prove the concept before defining it.</li>
+            <li><span class="beat-tag">Conflict</span> — "the second we make our own content, we forget it" — we hide our own contradiction and perform the finished expert instead.</li>
+            <li><span class="beat-tag">Solution</span> — let the unsure half show: stop deciding you have to be "one thing."</li>
+            <li><span class="beat-tag">Clarity</span> — "that contradiction is human and it's what makes people trust you" — names the exact payoff of the vulnerability.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="lib-card">
+      <div class="ref-head"><span class="ref-title">Compare-contrast micro lesson</span><span class="ref-source">"Sally &amp; the alligator"</span></div>
+      <div class="lib-split">
+        <div class="lib-script">
+          <p class="col-label">Script — connective tissue in gold</p>
+          <div class="mini-script">
+<p>People think you need an entire book to tell a great story, <span class="hl">but</span> great storytellers are able to tell a story in a single sentence.</p>
+            <p>Matter of fact, they do it every sentence.</p>
+            <p>If you zoomed into an entire story arc, you&#x27;re going to see many story arcs.</p>
+            <p>They&#x27;re supposed to keep you hooked in <span class="hl">so</span> you can experience the entire movie, video, or book. Every sentence is a choice, and it depends on what the moment calls for.</p>
+            <p>Let&#x27;s take a look at two examples. Exhibit A, Sally followed a squirrel into the mouth of an alligator.</p>
+            <p>Exhibit B, Sally met the mouth of an alligator because she followed a squirrel.</p>
+            <p>Each example has their own different functions.</p>
+            <p>A hooks your attention more, <span class="hl">but</span> the reveal is less satisfying.</p>
+            <p>B doesn&#x27;t grab attention, <span class="hl">but</span> it&#x27;s really good at pulling you along a thread into a satisfying reveal.</p>
+            <p><span class="hl">So</span> when I&#x27;m structuring a story or a script, I ask myself, what do I need right now?</p>
+            <p>Do I need the viewer&#x27;s attention or do I need to keep it going?</p>
+            <p>Short form content is just the intentional selection of these mini stories to keep your viewer long enough <span class="hl">so</span> they can get to the point of most value, whether that&#x27;s educational or emotional.</p>
+          </div>
+        </div>
+        <div class="lib-frame">
+          <p class="col-label">Framework</p>
+          <ol>
+<li>Contrarian claim hook</li>
+            <li>Zoom metaphor justifying the claim</li>
+            <li>Two labeled minimal-pair examples — same content, different construction</li>
+            <li>State the differential function of each version</li>
+            <li>Generalize into a decision rule; one-line definition close</li>
+          </ol>
+          <p class="col-label" style="margin-top:33px;">Why it works — Context / Conflict / Solution / Clarity</p>
+          <ul>
+<li><span class="beat-tag">Context</span> — claims an entire story arc can live inside one sentence, raising a question the viewer wants resolved.</li>
+            <li><span class="beat-tag">Conflict</span> — Exhibit A vs. Exhibit B: the same facts, reordered, produce opposite effects (attention vs. reveal) — proof by direct comparison.</li>
+            <li><span class="beat-tag">Solution</span> — ask "what do I need right now, attention or retention" and choose sentence structure accordingly.</li>
+            <li><span class="beat-tag">Clarity</span> — short-form is reframed as "the intentional selection of mini stories" to carry the viewer to the point of value.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-card">
+      <div class="ref-head"><span class="ref-title">Hook / Expansion / Mega Hook stack</span><span class="ref-source">"100k followers back door"</span></div>
+      <div class="lib-split">
+        <div class="lib-script">
+          <p class="col-label">Script — connective tissue in gold</p>
+          <div class="mini-script">
+<p>If you want to cheat and add 100k followers faster than all your competitors combined, you need to take the back door. - Hook</p>
+            <p>This goes against what every guru preaches - Primer</p>
+            <p><span class="hl">But</span> it&#x27;s how Jake added 100k in 4 weeks, Alex add 34K followers in 10 days, and Rebekah added 10k with 1 post - Mega Hook</p>
+            <p>Most gurus tell you to post 10 times a day, use these hooks and add outlier ideas. - Context</p>
+            <p><span class="hl">But</span> your competitors are doing the same thing. - Shift</p>
+            <p><span class="hl">So</span> to beat them you have to invert - Unique mechanism</p>
+            <p>They are swinging for the fence every time trying to go viral - What &quot;most&quot; people do</p>
+            <p><span class="hl">But</span> I use a cheat sheet that guarantees my video flops - Contrast</p>
+            <p>An example is do not show proof in the first 10 seconds - Example</p>
+            <p>Then all I do is make sure I do the opposite of everything on the list - Net new value</p>
+            <p>Removing all the bad consistently by definition makes your content good - Net new value</p>
+            <p>Munger said: &quot;It is remarkable how much long-term advantage people like us have gotten by trying to be consistently not stupid, [instead] of trying to be very intelligent.&quot; - Association Mega Hook</p>
+          </div>
+        </div>
+        <div class="lib-frame">
+          <p class="col-label">Framework</p>
+          <ol>
+<li>Hook: contrarian promise; Expansion: friction line</li>
+            <li>Mega Hook: stacked proof points — names, numbers, timeframes</li>
+            <li>Context (common advice); shift (why it's neutralized)</li>
+            <li>Unique mechanism, often an inversion; contrast; example</li>
+            <li>Net-new value stated twice; borrowed-authority quote close</li>
+          </ol>
+          <p class="col-label" style="margin-top:33px;">Why it works — Context / Conflict / Solution / Clarity</p>
+          <ul>
+<li><span class="beat-tag">Context</span> — states the normal playbook: post 10x a day, use hooks, chase outlier ideas.</li>
+            <li><span class="beat-tag">Conflict</span> — "your competitors are doing the same thing" — the normal playbook cancels itself out because everyone runs it.</li>
+            <li><span class="beat-tag">Solution</span> — invert: a subtraction checklist ("guarantees my video flops") where the win condition is doing the opposite of every item.</li>
+            <li><span class="beat-tag">Clarity</span> — the Munger quote reframes "not stupid" as a bigger edge than "very intelligent," closing on a borrowed-authority thesis.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-card">
+      <div class="ref-head"><span class="ref-title">Hook / Expansion / Mega Hook stack</span><span class="ref-source">"3 lines that trance"</span></div>
+      <div class="lib-split">
+        <div class="lib-script">
+          <p class="col-label">Script — connective tissue in gold</p>
+          <div class="mini-script">
+<p>It took me 7 months to learn 3 lines that forces people into a trance - Hook</p>
+            <p><span class="hl">But</span> you can&#x27;t do it every time otherwise it won&#x27;t work - Primer</p>
+            <p>The 4 times I&#x27;ve used it added over 10k followers - Mega Hook</p>
+            <p><span class="hl">So</span> the reason it works this well is because the lines have to be said back to back - Start of &quot;<span class="hl">But</span>/<span class="hl">So</span>&quot;</p>
+            <p><span class="hl">But</span> most people only say the first - Identifies mistake</p>
+            <p><span class="hl">So</span> the first line as you probably figured is the hook - State obvious to avoid confusion</p>
+            <p>You already know this <span class="hl">so</span> I&#x27;m going to just skip and get to the good stuff - Rehook</p>
+            <p><span class="hl">But</span> right after the hook you need to say a primer - Net new value</p>
+            <p>It&#x27;s a short line that instantly doubles the viewer&#x27;s curiosity</p>
+            <p>Example is &quot;I was told not to share this, <span class="hl">so</span> please don&#x27;t abuse this&quot;</p>
+            <p><span class="hl">But</span> the third line is the key - Rehook</p>
+            <p>It&#x27;s the super hook and it has to give the viewer a reason to watch - Net new value</p>
+            <p>If you want a real example of all 3 lines, just rewatch this video - Case in point</p>
+          </div>
+        </div>
+        <div class="lib-frame">
+          <p class="col-label">Framework</p>
+          <ol>
+<li>Hook: time-investment claim + named mechanism</li>
+            <li>Expansion: scarcity/usage-limit condition</li>
+            <li>Mega Hook: specific result count tied to use count</li>
+            <li>Explicit transition sentence announcing the teach</li>
+            <li>Teach each line in order, rehooking between; self-referential close</li>
+          </ol>
+          <p class="col-label" style="margin-top:33px;">Why it works — Context / Conflict / Solution / Clarity</p>
+          <ul>
+<li><span class="beat-tag">Context</span> — three lines exist that together force attention, but they only work said back to back.</li>
+            <li><span class="beat-tag">Conflict</span> — "most people only say the first" — names the exact mistake that breaks the mechanism.</li>
+            <li><span class="beat-tag">Solution</span> — say the hook, then immediately the primer, a short line that "instantly doubles the viewer's curiosity."</li>
+            <li><span class="beat-tag">Clarity</span> — the third line (mega hook) is what actually earns the watch — "gives the viewer a reason to watch," not just curiosity.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-card">
+      <div class="ref-head"><span class="ref-title">Hook / Expansion / Mega Hook stack</span><span class="ref-source">"types of primer"</span></div>
+      <div class="lib-split">
+        <div class="lib-script">
+          <p class="col-label">Script — connective tissue in gold</p>
+          <div class="mini-script">
+<p>Show me another creator that teaches this for free - Hook</p>
+            <p>I was told not to share this <span class="hl">so</span> what you do with this is on you - Primer</p>
+            <p><span class="hl">But</span> if you say one of these lines after your hook your views will double - Promise</p>
+            <p>It&#x27;s called The Primer - Unique Mechanism</p>
+            <p><span class="hl">So</span> the first type suggests that the info you&#x27;re about to share is dangerous - Net New Value</p>
+            <p>You already heard it because I said it at the start - Case in Point</p>
+            <p><span class="hl">But</span> the second type is even stronger because you&#x27;re saying it&#x27;s a secret - Rehook</p>
+            <p>Example is &quot;My 5 year NDA just expired <span class="hl">so</span> I can finally share this&quot; - Example</p>
+            <p><span class="hl">But</span> the third type pulls people in by focusing on loss - Rehook</p>
+            <p>Example is &quot;I paid $50K in therapy just to learn this&quot; - Example</p>
+            <p>They&#x27;re getting it for free <span class="hl">so</span> they listen</p>
+            <p><span class="hl">But</span> the strongest one of all is where you transfer morals to the viewer - Rehook</p>
+            <p><span class="hl">So</span> you can say &quot;I&#x27;m trusting you with this, Please don&#x27;t abuse this,&quot; - Example</p>
+            <p>Now the viewer can&#x27;t help <span class="hl">but</span> watch - Close Loop</p>
+          </div>
+        </div>
+        <div class="lib-frame">
+          <p class="col-label">Framework</p>
+          <ol>
+<li>Hook: challenge/comparison framing; Expansion: scarcity line</li>
+            <li>Promise stated as direct consequence of the technique</li>
+            <li>Name the mechanism explicitly</li>
+            <li>Sub-types in ascending strength order, each with a labeled example</li>
+            <li>Strongest variant last; close on "loop closed," no CTA</li>
+          </ol>
+          <p class="col-label" style="margin-top:33px;">Why it works — Context / Conflict / Solution / Clarity</p>
+          <ul>
+<li><span class="beat-tag">Context</span> — names the mechanism up front ("The Primer") and stakes it against scarcity: no other creator teaches this for free.</li>
+            <li><span class="beat-tag">Conflict</span> — the weakest sub-type (danger framing) is stated first, setting up escalation instead of a flat list.</li>
+            <li><span class="beat-tag">Solution</span> — three sub-types in ascending strength: danger → secrecy → loss, each with its own labeled example line.</li>
+            <li><span class="beat-tag">Clarity</span> — the strongest close is moral transfer ("I'm trusting you with this") which "closes the loop" so the viewer can't look away.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="lib-card">
+      <div class="ref-head"><span class="ref-title">Personal proof stack + responsibility reframe</span><span class="ref-source">"make yourself more interesting"</span></div>
+      <div class="lib-split">
+        <div class="lib-script">
+          <p class="col-label">Script — connective tissue in gold</p>
+          <div class="mini-script">
+<p>For the love of God, you have to make yourself more interesting.</p>
+            <p>Sarah Blakely is a billionaire and the founder of Spanx.</p>
+            <p>She has this beautiful quote where she says, the more that we experience, the more that we have to offer.</p>
+            <p>People who have experienced a lot can offer a lot in the form of wisdom, lessons, and perspective.</p>
+            <p><span class="hl">So</span> over the last few years, I have tried to make myself more interesting.</p>
+            <p>Not for the sake of others, <span class="hl">but</span> to make my life fun. Over the last few years, I&#x27;ve run marathons all over the world. I helped break a Guinness World Record. I picked up my entire life in Atlanta and became a full-time nomad traveling the world living out of a suitcase.</p>
+            <p>And now I&#x27;m living across the country from home in California.</p>
+            <p>Even little stuff across days and weeks you can do.</p>
+            <p>Last weekend I decided to go skydiving with my best friend on a whim.</p>
+            <p>Just stuff to make you interesting. The more you push yourself out of your comfort zone, which is basically the theme of all the tasks I&#x27;m talking about, getting uncomfortable, the more you are able to learn about yourself and then teach others about the world through the insight that you gain.</p>
+            <p><span class="hl">So</span> if your life is boring, it&#x27;s your fault, and it&#x27;s your responsibility to change it.</p>
+            <p>It is not easy, <span class="hl">but</span> it is simple. Don&#x27;t overcomplicate it.</p>
+          </div>
+        </div>
+        <div class="lib-frame">
+          <p class="col-label">Framework</p>
+          <ol>
+<li>Command hook, high urgency</li>
+            <li>Borrowed authority quote from a named figure</li>
+            <li>Personal proof list — rapid-fire, escalating</li>
+            <li>Name the underlying mechanism connecting the proof items</li>
+            <li>Responsibility reframe; closing line</li>
+          </ol>
+          <p class="col-label" style="margin-top:33px;">Why it works — Context / Conflict / Solution / Clarity</p>
+          <ul>
+<li><span class="beat-tag">Context</span> — command hook plus a borrowed-authority quote (Sarah Blakely) sets the premise: experience is what you have to offer.</li>
+            <li><span class="beat-tag">Conflict</span> — implied, not stated: staying in the comfortable, routine life is the default that produces nothing to teach from.</li>
+            <li><span class="beat-tag">Solution</span> — the proof stack, escalating: marathons, a world record, becoming a nomad, a cross-country move, skydiving on a whim.</li>
+            <li><span class="beat-tag">Clarity</span> — responsibility reframe: "if your life is boring, it's your fault" — then closes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-card">
+      <div class="ref-head"><span class="ref-title">Contrarian observation + mechanism explainer</span><span class="ref-source">"equity from your personal brand"</span></div>
+      <div class="lib-split">
+        <div class="lib-script">
+          <p class="col-label">Script — connective tissue in gold</p>
+          <div class="mini-script">
+<p>I don&#x27;t see anyone talking about this as a reason to build your personal brand, <span class="hl">but</span> I&#x27;ve been doing it and it&#x27;s game changing.</p>
+            <p>If you have a following or are building your following, you can leverage your name, image, and likeness to gain equity in companies in your brand deals.</p>
+            <p>This is huge news.</p>
+            <p>Normally, in order to invest in a brand in hopes that it eventually goes public or gets bought <span class="hl">so</span> you can cash out big, you need capital. You need money.</p>
+            <p>Never before has it been this easy to build something that a brand wants to tie themselves to.</p>
+            <p>Normally, you see people at the very top, someone like a Tony Robbins offering their name, image, and likeness in exchange for an equity position in a brand. Hey, you give me ownership, a piece of the company, and I will promote it. I will do marketing for you, and you can use my name to increase the reputation.</p>
+            <p><span class="hl">But</span> if you have a trusted brand and an audience that loves you and is devoted to you, you don&#x27;t just have to accept money or product in exchange for your brand deals.</p>
+            <p>You can offer or ask to get an equity position in some of these startup companies. And I feel like no one is discussing that.</p>
+            <p>All the more reason to build a personal brand for yourself if you haven&#x27;t. And if you are established and you have a big audience,</p>
+            <p>leverage that to gain equity. Because if these companies that you love and want to invest in cash out, you can have a big payday.</p>
+          </div>
+        </div>
+        <div class="lib-frame">
+          <p class="col-label">Framework</p>
+          <ol>
+<li>Contrarian observation hook — "no one is talking about this"</li>
+            <li>Name the mechanism/opportunity plainly</li>
+            <li>Contrast against the normal path to access it</li>
+            <li>Tier contrast — who currently gets access vs. who could</li>
+            <li>Reframe as an owned advantage; practical close</li>
+          </ol>
+          <p class="col-label" style="margin-top:33px;">Why it works — Context / Conflict / Solution / Clarity</p>
+          <ul>
+<li><span class="beat-tag">Context</span> — states the normal path to equity: you need capital to invest and eventually cash out.</li>
+            <li><span class="beat-tag">Conflict</span> — that path is gate-kept — normally only top-tier names (Tony Robbins) get to trade image for equity.</li>
+            <li><span class="beat-tag">Solution</span> — if you have a trusted, devoted audience, you can ask for equity instead of cash or product in brand deals.</li>
+            <li><span class="beat-tag">Clarity</span> — "if these companies cash out, you can have a big payday" — reframes personal brand as an owned financial asset, no tagline needed.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-card">
+      <div class="ref-head"><span class="ref-title">Reframe declaration + stat-stacked rebuttal</span><span class="ref-source">"exercise is not a hobby"</span></div>
+      <div class="lib-split">
+        <div class="lib-script">
+          <p class="col-label">Script — connective tissue in gold</p>
+          <div class="mini-script">
+<p>One of the many hills I&#x27;m prepared to die on is that strength training and exercise is not a hobby.</p>
+            <p>It&#x27;s not stamp collecting or sewing. It is something everybody should do and it is a part of your hygiene routine.</p>
+            <p>Just like brushing your teeth or showering. When people treat it as such, I don&#x27;t even believe that it should be an option.</p>
+            <p>I believe training your body should be a non-negotiable.</p>
+            <p>And not in a crazy way, just going to the gym and kind of pushing yourself two or three times a week and walking.</p>
+            <p>Those two things alone paired with a halfway decent diet that you&#x27;re conscious of would solve 80% of your problems.</p>
+            <p>And it&#x27;s weird when people say like, you&#x27;re into working out. Fucking yeah, you&#x27;re not.</p>
+            <p>Are you not into the fact that your likelihood of surviving all cancers across the board goes up by 20% if you just have a good amount of muscle or that it reduced your risk of all cause mortality, meaning heart attack, stroke, cancer, diabetes, all of it, or the reduced risk of osteoporosis in women, or that you just look fucking sick?</p>
+            <p>What the hell do you mean, hobby? Lock in. Go to the gym, tubby. I love you when I say that. It isn&#x27;t easy, <span class="hl">but</span> it is simple. Don&#x27;t overcomplicate it.</p>
+          </div>
+        </div>
+        <div class="lib-frame">
+          <p class="col-label">Framework</p>
+          <ol>
+<li>Declarative "hill to die on" hook</li>
+            <li>Category reframe — move the subject from optional to mandatory</li>
+            <li>Concrete minimum-effective-dose</li>
+            <li>Rhetorical pushback, unfiltered tone</li>
+            <li>Stacked stats as rhetorical questions</li>
+            <li>Affectionate callback insult; closing line</li>
+          </ol>
+          <p class="col-label" style="margin-top:33px;">Why it works — Context / Conflict / Solution / Clarity</p>
+          <ul>
+<li><span class="beat-tag">Context</span> — declares a "hill to die on": training isn't optional, it's hygiene, non-negotiable.</li>
+            <li><span class="beat-tag">Conflict</span> — the pushback most people give ("you're into working out") is confronted directly and dismissed.</li>
+            <li><span class="beat-tag">Solution</span> — the minimum effective dose: gym 2–3x a week, walking, a halfway decent diet — "solves 80% of your problems."</li>
+            <li><span class="beat-tag">Clarity</span> — stat-stacked rebuttal (cancer survival, all-cause mortality, osteoporosis) as rhetorical questions, then the affectionate close: "lock in... go to the gym, tubby."</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </section>
+
+  <div class="footer">J12 · Storyline SOP · Gold Series</div>
+</div>
+</body>
+</html>
